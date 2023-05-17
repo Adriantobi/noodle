@@ -1,0 +1,66 @@
+.SideNav {
+    display: flex;
+    gap: 8px;
+    width: fit-content;
+}
+
+.SideNavMenu {
+    display: flex;
+    width: 55px;
+    height: calc(100vh - 56px);
+    background: rgb(35, 41, 49);
+    border-radius: 8px;
+    margin: 0 0 0 8px;
+    z-index: 1000;
+    color: #fff;
+}
+
+.SideNavMenu ul {
+    list-style: none;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 10px 0;
+    gap: 10px;
+}
+
+.SideNavMenu ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.SideNavMenu ul li:hover {
+    cursor: pointer;
+    background-color: #515151;
+    border-radius: 8px;
+    margin: 0 5px;
+}
+
+.SideNavMenu ul li svg {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.toolBarTitles {
+    font-size: 10px;
+    margin: 0;
+}
+
+.horizontalSpacer {
+    padding: 0 1px;
+}
+
+.horizontalSpacer::before {
+    display: flex;
+    content: "";
+    top: 0px;
+    left: 0px;
+    width: auto;
+    height: 1px;
+    border-bottom: 1px solid rgb(81, 81, 81);
+}

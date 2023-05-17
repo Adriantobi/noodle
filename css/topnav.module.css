@@ -1,0 +1,72 @@
+.TopNav {
+    background: rgb(35, 41, 49);
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    color: #fff;
+    z-index: 1001;
+}
+
+.TopNa a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+.noodleInfoSection, .roomSettings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.noodleTopNavButton {
+    padding: 4px 9px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #3d3e42;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.noodleTopNavButton:hover {
+    background-color: #515151;
+}
+
+.noodleTopNavButton svg {
+    width: 18px;
+    height: 18px;
+    color: #fff;
+}
+
+.companyButton, .settingsButton {
+    background-color: transparent;
+    border-radius: 3px;
+    padding: 6px;
+}
+
+.roomName {
+    padding: 5.6px 8px;
+}
+
+.verticalSpacer::before {
+    display: flex;
+    content: "";
+    bottom: 0px;
+    right: 0px;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid rgb(81, 81, 81);
+}
+
+.minimise {
+    display: flex;
+}

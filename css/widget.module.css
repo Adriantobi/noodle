@@ -1,0 +1,85 @@
+.widget {
+    background-color: #232931;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    border-radius: 8px;
+    width: 360px;
+    z-index: 1001;
+    /* box-shadow: 0px 0px 2px #888888; */
+}
+
+.widget::-webkit-resizer {
+    display: none;
+} 
+
+.resizable {
+    overflow: hidden;
+    resize: both;
+    min-width: 360px;
+    min-height: 164px;
+}
+
+.onTop {
+    z-index: 1002;
+}
+
+.widgetHeader {
+    display: flex;
+    color: #fff;
+    justify-content: space-between;
+    height: 45px;
+    min-height: 45px;
+    max-height: 45px;
+    border-bottom: 1px solid #dfdfdf;
+    align-items: center;
+    text-align: center;
+    cursor: grab;
+}
+
+.transparent {
+    background-color: transparent;
+    border: 0px;
+}
+
+.widgetTitle {
+    display: flex;
+    margin: 8px 22px;
+}
+
+.closeWidget {
+    display: flex;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.closeWidget svg {
+    width: 18px;
+    height: 18px;
+}
+
+.widgetContent {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    color: #fff;
+    height: 100%;
+}
+
+.widgetContent::-webkit-scrollbar {
+    display: none;
+}
+
+.resize {
+    display: flex;
+}
+
+.resize svg {
+    position: absolute;
+    fill: #fff;
+    width: fit-content;
+    bottom: 0px;
+    right: 0px;
+    z-index: 1;
+    pointer-events: none;
+}

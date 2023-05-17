@@ -1,0 +1,32 @@
+.FrameSpaces {
+  position: absolute;
+  display: flex;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  width: 200%; /* enlarge beyond browser width */
+  left: -100%; /* center */
+  pointer-events: none;
+}
+
+.FrameSpaces iframe {
+  display: flex;
+  position: fixed;
+  width: 100%; 
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .FrameSpaces iframe {
+    /* height = 100 * (9 / 16) = 56.25 */
+    height: 56.25vw;
+  }
+}
+@media (max-aspect-ratio: 16/9) {
+  .FrameSpaces iframe {
+    /* width = 100 / (9 / 16) = 177.777777 */
+    width: 177.78vh;
+  }
+}

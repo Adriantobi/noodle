@@ -1,0 +1,80 @@
+.dropDownMenu {
+    width: 200px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    background: rgb(35, 41, 49);
+    color: #fff;
+    border-radius: 8px;
+    z-index: 1002;
+    position: absolute;
+    top: 48px;
+    right: 8px;
+}
+
+.dropDownMenuButton {
+    border-bottom: 1px solid #515151;
+    display: flex;
+    height: 23.2px;
+    cursor: pointer;
+    align-items: center;
+    padding: 6px 10px;
+}
+
+.dropDownMenuButton a, .dropDownMenuButton div {
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 5px;
+    color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+.dropDownMenuButton a svg, .dropDownMenuButton div svg {
+    width: 16px;
+    height: 16px;
+}
+
+.dualButton {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dualButton .dropDownMenuButton {
+    width: 100%;
+}
+
+.dualButton .dropDownMenuButton div {
+    display: flex;
+    justify-content: center;
+}
+
+.verticalSpacer::before {
+    display: flex;
+    content: "";
+    bottom: 0px;
+    right: 0px;
+    height: 100%;
+    width: 1px;
+    border-left: 1px solid rgb(81, 81, 81);
+}
+
+.linkSection {
+    border: none;
+    display: flex;
+    justify-content: space-around;
+    height: 24px;
+}
+
+.buttonLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonLink svg {
+    width: 16px;
+    height: 16px;
+}

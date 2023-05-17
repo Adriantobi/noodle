@@ -1,0 +1,64 @@
+.shuffleCategoryWrapper {
+    width: 65px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 55px;
+    padding: 10px 0px 0px 0px;
+    float: left;
+}
+
+.shuffleCategoryButton:hover {
+    background-color: #424345;
+    border: 2px solid #505050;
+    width: 40.25px;
+    height: 50.25px;
+}
+
+.shuffleCategoryButton {
+    width: 41px;
+    height: 51px;
+    text-decoration: none;
+    background-color: #232931;
+    border-radius: 15px;
+    padding: 1px 6px;
+    cursor: pointer;
+    border: 1.5px solid #515151;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.shuffleCategoryButton:hover .noodleToolTip {
+    display: block;
+}
+
+.noodleToolTip {
+    position: absolute;
+    white-space: nowrap;
+    display: none;
+    background: #232931;
+    border-radius: 5px;
+    font-size: 14px;
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+    padding: 5px;
+    box-shadow: 1px 1px 3px #1e242b;
+    z-index: 2002;
+    left: 0;
+    top: 0;
+}
+
+.carouselRow {
+    width: 642px;
+    display: flex;
+}
+
+.spaceCategoryIcon {
+    display: flex;
+    width: 30px;
+    height: 30px;
+}

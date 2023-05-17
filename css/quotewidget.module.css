@@ -1,0 +1,9 @@
+.todaysQuote {
+    display: flex;
+    padding: 0 20px;
+}
+
+.quoteText {
+    display: flex;
+    margin: 0;
+}

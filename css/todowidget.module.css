@@ -1,0 +1,26 @@
+.toDoList {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0;
+}
+
+.newToDoItem {
+    display: flex;
+    color: #aeaeae;
+    gap: 5px;
+    font-size: 13px;
+    border-radius: 2px;
+    padding: 8px;
+    margin: 0px 16px;
+    cursor: pointer;
+}
+
+.newToDoItem:hover {
+    background: #393c40;
+}
+
+.newToDoItem svg {
+    width: 14px;
+    height: 14px;
+    stroke: #858689;
+}
