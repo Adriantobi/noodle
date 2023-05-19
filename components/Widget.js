@@ -16,11 +16,24 @@ export default function WidgetCanvas( props ) {
 
     // Update the current position if mouse is down
     const onMouseMove = (event) => {
+        const windowHeight = document.querySelector(`.${styles.widget}_${props.name}`).parentNode.getBoundingClientRect().height
+        const windowWidth = document.querySelector(`.${styles.widget}_${props.name}`).parentNode.getBoundingClientRect().width
+
+        const widgetTopPos = document.querySelector(`.${styles.widget}_${props.name}`).getBoundingClientRect().bottom + event.movementY
+        const widgetLeftPos = document.querySelector(`.${styles.widget}_${props.name}`).getBoundingClientRect().right +event.movementX
+
+        const widgetWidth = document.querySelector(`.${styles.widget}_${props.name}`).getBoundingClientRect().width
+        const widgetHeight = document.querySelector(`.${styles.widget}_${props.name}`).getBoundingClientRect().height
+
+        console.log('x:', widgetLeftPos, 'y:', widgetTopPos)
+
         if (drag) {
-            setPosition({
-                x: position.x + event.movementX,
-                y: position.y + event.movementY
-            })
+            if (widgetTopPos >= 48 + widgetHeight && widgetLeftPos > widgetWidth && widgetTopPos <= windowHeight + 48 && widgetLeftPos <= windowWidth) {
+                setPosition({
+                    x: position.x + event.movementX,
+                    y: position.y + event.movementY
+                })
+            }
 
             document.querySelector(`.${styles.widgetHeader}_${props.name}`).style.cursor = 'grabbing'
             document.body.style.cursor = 'grabbing'
@@ -33,6 +46,8 @@ export default function WidgetCanvas( props ) {
     }
 
     document.body.addEventListener('mousemove', onMouseMove)
+
+    document.body.addEventListener('mouseleave', (e) => { setDrag(false); document.body.removeEventListener('mousemove', onMouseMove) })
 
     document.body.addEventListener('mouseup', (e) => { setDrag(false); document.body.removeEventListener('mousemove', onMouseMove) })
 

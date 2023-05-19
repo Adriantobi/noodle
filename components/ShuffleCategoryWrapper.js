@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
+
 import styles from '../css/shufflecategorywrapper.module.css'
 
-export default function ShuffleCategoryWrapper ( props ) {
+export default async function ShuffleCategoryWrapper ( props ) {
     function showTooltip(e) {
         var tooltip = e.target.classList.contains(`.${styles.noodleToolTip}`)
             ? e.target

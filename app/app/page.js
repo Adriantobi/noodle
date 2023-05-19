@@ -7,28 +7,18 @@ import WidgetCanvas from '@/components/WidgetCanvas'
 
 import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient()
+export default async function Home() {
+  const prisma = new PrismaClient()
 
-export default function Home() {
-  const creators = {id:1, name:'Community Member'}
-  const spaces = {id:1, name:'Colourful Bubbles', src:'RhlQvbvMg-0'}
+  const spaces = await prisma.space.findMany()
+  const creators = await prisma.creator.findMany()
 
   return (
     <main className={styles.main}>
       <TopNav />
-      <SideNav creatorname={creators.name} spacename={spaces.name} />
-      <FrameSpaces source={spaces.src} category='Mystery' />
+      <SideNav creatorname={creators[spaces[8].authorId - 1].name} spacename={spaces[8].title} />
+      <FrameSpaces source={spaces[8].link} category={spaces[8].category} />
       <WidgetCanvas />
     </main>
   )
-}
-
-export async function getServerSideProps() {
-  const spaces = await prisma.space.findMany()
-
-  return{
-    props : {
-      spaces,
-    },
-  }
 }
