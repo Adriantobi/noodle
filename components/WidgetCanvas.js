@@ -8,7 +8,7 @@ import QuoteWidget from './QuotesWidget'
 import NotesWidget from './NotesWidget'
 
 export default function WidgetCanvas() {
-   return (
+    return (
         <div className={styles.widgetCanvas}>
             <MusicWidget /> {/* Add Input Transition */}
             <PomodoroTimer/> {/* Time and Settings */}
@@ -17,5 +17,5 @@ export default function WidgetCanvas() {
             <QuoteWidget /> {/* Refresh every 24hrs */}
             <NotesWidget /> {/* Done */} 
         </div>
-   )
+    )
 }

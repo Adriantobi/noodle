@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 import styles from '../css/shufflecategorywrapper.module.css'
 
-export default async function ShuffleCategoryWrapper ( props ) {
-    function showTooltip(e) {
+export default function ShuffleCategoryWrapper ( props ) {
+    const showTooltip = (e) => {
         var tooltip = e.target.classList.contains(`.${styles.noodleToolTip}`)
             ? e.target
             : e.target.querySelector(`:scope .${styles.noodleToolTip}`);
@@ -27,12 +27,12 @@ export default async function ShuffleCategoryWrapper ( props ) {
     return (
         <div className={styles.shuffleCategoryWrapper}>
             <div className={styles.shuffleCategoryButton}>
-                <span className={styles.noodleToolTip}>{props.tooltip}</span>
+                <span className={styles.noodleToolTip}>{props.category}</span>
                 <picture>
                     <img 
                         className={styles.spaceCategoryIcon}
                         src={props.src}
-                        alt={`An emoji for ${props.tooltip.toUpperCase()} space category.`}
+                        alt={`An emoji for ${props.category.toUpperCase()} space category.`}
                     />
                 </picture>
             </div>

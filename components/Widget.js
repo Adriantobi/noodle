@@ -25,8 +25,6 @@ export default function WidgetCanvas( props ) {
         const widgetWidth = document.querySelector(`.${styles.widget}_${props.name}`).getBoundingClientRect().width
         const widgetHeight = document.querySelector(`.${styles.widget}_${props.name}`).getBoundingClientRect().height
 
-        console.log('x:', widgetLeftPos, 'y:', widgetTopPos)
-
         if (drag) {
             if (widgetTopPos >= 48 + widgetHeight && widgetLeftPos > widgetWidth && widgetTopPos <= windowHeight + 48 && widgetLeftPos <= windowWidth) {
                 setPosition({
