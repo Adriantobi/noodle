@@ -9,20 +9,29 @@ import prisma from '@/lib/client'
 
 export default async function Home() {
   const spaces = await prisma.space.findMany()
-  const creators = await prisma.creator.findMany()
-
   const randomSpace = () => {
     let randomNum = Math.floor(Math.random() * spaces.length)
     return randomNum
   }
 
   const num = randomSpace()
+  const space = await prisma.space.findMany({
+    where: {
+      id: num
+    }
+  })
+
+  const creator = await prisma.creator.findMany({
+    where: {
+      id: space[0].authorId
+    }
+  })
 
   return (
     <main className={styles.main}>
       <TopNav />
-      <SideNav creatorname={creators[spaces[num].authorId-1].name} spacename={spaces[num].title} />
-      <FrameSpaces source={spaces[num].link} category={spaces[num].category} />
+      <SideNav creatorname={creator[0].name} spacename={space[0].title} link={space[0].link} instagram={creator[0].instagram} youtube={creator[0].youtube} website={creator[0].website} twitter={creator[0].twitter} />
+      <FrameSpaces source={space[0].link} category={space[0].category} />
       {/* <WidgetCanvas /> */}
     </main>
   )

@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react'
 export default function MenuSpaces( props ) {
     //Close MenuSpaces
     const [menuSpacesOpen, setMenuSpacesOpen] = useState(props.open);
+    const [copy, setCopy] = useState(false)
     const [dateState, setDateState] = useState(new Date());
     useEffect(() => {
            setInterval(() => setDateState(new Date()), 1000);
@@ -77,6 +78,17 @@ export default function MenuSpaces( props ) {
             document.querySelector(`.${styles.saveSpace} svg`).style.fill = 'none';
         }
     },[saved])
+
+    useEffect(() => {
+        if (copy) {
+            navigator.clipboard.writeText("https://youtu.be/" + props.link)
+            document.querySelector(`.${styles.shareSpaceLinkButton}`).innerHTML = "Share Space ⟶  Link copied!"
+            setInterval(
+                () => {document.querySelector(`.${styles.shareSpaceLinkButton}`).innerHTML = "Share Space ⟶"; setCopy(false)},
+                5000
+            );
+        }
+    },[copy, props])
 
     return (
         <>
@@ -199,7 +211,7 @@ export default function MenuSpaces( props ) {
                             <div className={styles.spaceIndicator}>
                                 <div className={styles.shareSpaceName}>
                                     <div className={styles.spaceNameText}>{props.space}</div>
-                                    <div className={styles.shareSpaceLinkButton}>Share Space ⟶</div>
+                                    <div className={styles.shareSpaceLinkButton} onClick={() => setCopy(true) }>Share Space ⟶</div>
                                 </div>
                                 
                                 <div className={styles.spacesOptions}>
@@ -220,10 +232,10 @@ export default function MenuSpaces( props ) {
                             <div className={styles.creatorTextContent}>
                                 <div className={styles.creatorUserNameSection}><span className={styles.creatorUserName}>@{props.creator}</span><sup><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 10 10" fill="none" class="feather feather-verified-icon"><path fill="#fff" d="M1.875 1.875h6.25v6.25h-6.25z"></path><path fill-rule="evenodd" d="M5 10a5 5 0 003.536-8.536 5 5 0 00-7.072 0A5 5 0 005 10zm2.317-5.808a.62.62 0 00.175-.44.63.63 0 00-.183-.437.624.624 0 00-.437-.183.63.63 0 00-.44.175L4.375 5.366l-.808-.808a.62.62 0 00-.44-.175.63.63 0 00-.437.183.624.624 0 00-.183.437.63.63 0 00.175.44l1.25 1.25a.625.625 0 00.884 0l2.5-2.5z" fill="#127fff"></path></svg></sup></div>
                                 <div className={styles.creatorLinks}>
-                                    <a href="" target="_blank" id="instagram" className={styles.socialLinksForCreator}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                                    <a href="" target="_blank" id="twitter" className={styles.socialLinksForCreator}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
-                                    <a href="" target="_blank" id="website" className={styles.socialLinksForCreator}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a>
-                                    <a href="" target="_blank" id="twitch" className={styles.socialLinksForCreator}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+                                    { props.instagram ? <a href={props.instagram} target="_blank" id="instagram" className={styles.socialLinksForCreator}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a> : null }
+                                    { props.twitter ? <a href={props.twitter} target="_blank" id="twitter" className={styles.socialLinksForCreator}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a> : null }
+                                    { props.website ? <a href={props.website} target="_blank" id="website" className={styles.socialLinksForCreator}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a> : null }
+                                    { props.youtube ? <a href={props.youtube} target="_blank" id="youtube" className={styles.socialLinksForCreator}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-youtube"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a> : null }
                                 </div>
                             </div>
                         </div>
