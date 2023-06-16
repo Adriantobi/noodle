@@ -22,7 +22,7 @@ export default async function Home() {
 
   const creator = await prisma.creator.findMany({
     where: {
-      id: space[0].authorId,
+      id: num, //space[0].authorId
     }
   })
 
