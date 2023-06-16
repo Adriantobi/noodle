@@ -50,10 +50,10 @@ export default function WidgetCanvas( props ) {
     document.body.addEventListener('mouseup', (e) => { setDrag(false); document.body.removeEventListener('mousemove', onMouseMove) })
 
     return (
-        <div className={`${styles.widget} ${styles.widget}_${props.name} ${props.resize ? `${styles.resizable}` : '' } ${props.clear ? `${styles.transparent}` : '' }`} onMouseEnter={ () => setResizeIcon(!resizeIcon) } onMouseMove={ () => setResizeIcon(true) } onMouseLeave={() => setResizeIcon(!resizeIcon)}>
+        <div className={`${styles.widget} ${styles.widget}_${props.name} ${props.resize ? `${styles.resizable}` : '' } ${props.clear ? `${styles.transparent}` : '' } ${props.display ? `${styles.display}` : '' }`} onMouseEnter={ () => setResizeIcon(!resizeIcon) } onMouseMove={ () => setResizeIcon(true) } onMouseLeave={() => setResizeIcon(!resizeIcon)}>
             <div className={`${styles.widgetHeader} ${styles.widgetHeader}_${props.name} ${props.clear ? `${styles.transparent}` : '' }`} onMouseDown={ () => setDrag(true) } id={styles.header}>
                 <div className={styles.widgetTitle}>{props.header}</div>
-                <div className={styles.closeWidget}>
+                <div className={styles.closeWidget} onClick={props.close}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 </div>
             </div>

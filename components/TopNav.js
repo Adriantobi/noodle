@@ -12,15 +12,16 @@ export default function TopNav() {
     const [fullScreen, setFullScreen] = useState(false)
     const [showElement, setShowElement] = useState(true)
 
-    // useEffect(() => {
-    //     setTimeout(() => {
-    //         setShowElement(false)
-    //     }, 30000)
-    // },[showElement])
+    useEffect(() => {
+        setTimeout(() => {
+            setShowElement(false)
+        }, 30000)
+    },[showElement])
 
-    // useEffect(() => {
-    //     window.addEventListener('mousemove', () => setShowElement(true))
-    // },[])
+    useEffect(() => {
+        window.addEventListener('click', () => setShowElement(true))
+        window.addEventListener('mousemove', () => setShowElement(true))
+    },[])
 
     useEffect(() => {
         if (fullScreen) {
@@ -83,7 +84,7 @@ export default function TopNav() {
                 </div>
             : null }
 
-            { dropDownOpen ? <DropMenu /> : null }
+            { dropDownOpen ? <DropMenu class={showElement} /> : null }
         </>
     )
 }

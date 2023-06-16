@@ -52,11 +52,6 @@
     top: 0;
 }
 
-.carouselRow {
-    width: 642px;
-    display: flex;
-}
-
 .spaceCategoryIcon {
     display: flex;
     width: 30px;

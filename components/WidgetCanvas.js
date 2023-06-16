@@ -7,15 +7,15 @@ import SoundBoardWidget from './SoundBoardWidget'
 import QuoteWidget from './QuotesWidget'
 import NotesWidget from './NotesWidget'
 
-export default function WidgetCanvas() {
+export default function WidgetCanvas( props ) {
     return (
         <div className={styles.widgetCanvas}>
-            <MusicWidget /> {/* Add Input Transition */}
-            <PomodoroTimer/> {/* Time and Settings */}
-            <ToDoWidget /> {/* Add Percent Completed and Drag */}
-            <SoundBoardWidget/> {/* Done */}
-            <QuoteWidget /> {/* Refresh every 24hrs */}
-            <NotesWidget /> {/* Done */} 
+            <PomodoroTimer display={props.pomodoro} function={ props.pomodoroClose } /> {/* Time and Settings */}
+            <ToDoWidget display={props.todo} function={ props.toDoClose } /> {/* Add Percent Completed and Drag */}
+            <SoundBoardWidget display={props.sound} function={ props.soundClose } /> {/* Done */}
+            <MusicWidget display={props.music} function={ props.musicClose } /> {/* Add Input Transition */}
+            <QuoteWidget display={props.quote} function={ props.quoteClose } /> {/* Refresh every 24hrs */}
+            <NotesWidget display={props.notes} function={ props.notesClose }/> {/* Done */} 
         </div>
     )
 }

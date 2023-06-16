@@ -4,6 +4,11 @@
     z-index: 1003;
 }
 
+.full {
+    height: calc(100vh - 16px);
+    margin: 8px 0 8px 8px;
+}
+
 .sideBarIcon {
     width: fit-content;
     height: fit-content;
@@ -18,7 +23,7 @@
     flex-direction: column;
     flex-grow: 1;
     width: 300px;
-    height: calc(100vh - 56px);
+    height: calc(100%);
     background: rgb(35, 41, 49);
     border-radius: 8px;
     color: #fff;
@@ -88,68 +93,10 @@
     display: none;
 }
 
-.shuffleCategoryWrapper {
-    width: 65px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    height: 55px;
-    padding: 0px 0px 10px 0px;
-    float: left;
-}
-
-.shuffleCategoryButton:hover {
-    background-color: #424345;
-    border: 2px solid #505050;
-    width: 40.25px;
-    height: 50.25px;
-}
-
-.shuffleCategoryButton {
-    width: 41px;
-    height: 51px;
-    text-decoration: none;
-    background-color: #232931;
-    border-radius: 15px;
-    padding: 1px 6px;
-    cursor: pointer;
-    border: 1.5px solid #515151;
-    float: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.shuffleCategoryButton:hover .darkUxToolTip {
-    display: block;
-}
-
-.darkUxToolTip {
-    position: absolute;
-    white-space: nowrap;
-    display: none;
-    background: #232931;
-    border-radius: 5px;
-    font-size: 14px;
-    height: 20px;
-    line-height: 20px;
-    color: #fff;
-    padding: 5px;
-    box-shadow: 1px 1px 3px #1e242b;
-    z-index: 2002;
-}
-
 .carouselRow {
     width: fit-content;
     display: flex;
     transition: all ease-in-out 1s;
-}
-
-.spaceCategoryIcon {
-    display: flex;
-    width: 30px;
-    height: 30px;
 }
 
 .spacesInfoBlock {
@@ -335,12 +282,13 @@
 
 .spacesSideBarContent {
     display: flex;
-    height: calc( 100vh - 560px);
+    flex-grow: 1;
 }
 
 .spacesSideBarFooterButtons {
     display: flex;
     padding: 4px 2px;
+    padding-bottom: 8px;
     justify-content: space-evenly;
     overflow: hidden;
 }

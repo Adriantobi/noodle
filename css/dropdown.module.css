@@ -12,6 +12,10 @@
     right: 8px;
 }
 
+.top {
+    top: 8px;
+}
+
 .dropDownMenuButton {
     border-bottom: 1px solid #515151;
     display: flex;

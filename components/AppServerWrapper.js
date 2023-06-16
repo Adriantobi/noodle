@@ -1,10 +1,7 @@
-import styles from '../../css/app.module.css'
-
-import AppContent from '@/components/AppContent'
-
 import prisma from '@/lib/client'
+import AppContent from './AppContent'
 
-export default async function Home() {
+export default async function AppServerWrapper( props ) {
   const spaces = await prisma.space.findMany()
 
   const randomSpace = () => {
@@ -16,7 +13,7 @@ export default async function Home() {
   const space = await prisma.space.findMany({
     where: {
       id: num,
-      // category: 'Anime',
+      category: props.category,
     }
   })
 
@@ -28,7 +25,17 @@ export default async function Home() {
 
   return (
     <main className={styles.main}>
-      <AppContent creatorname={creator[0].name} spacename={space[0].title} link={space[0].link} category={space[0].category} instagram={creator[0].instagram} youtube={creator[0].youtube} website={creator[0].website} twitter={creator[0].twitter} />
+      <AppContent 
+        spaces={space}
+        creatorname={creator[0].name}
+        spacename={space[0].title}
+        link={space[0].link}
+        category={space[0].category}
+        instagram={creator[0].instagram}
+        youtube={creator[0].youtube}
+        website={creator[0].website}
+        twitter={creator[0].twitter}
+      />
     </main>
   )
 }

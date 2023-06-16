@@ -6,7 +6,7 @@ import Widget from './Widget'
 
 import { useState, useEffect} from 'react'
 
-export default function QuoteWidget() {
+export default function QuoteWidget( props ) {
     const [ quote, setQuote ] = useState('');
 
     const getQuotes = () => {
@@ -39,10 +39,12 @@ export default function QuoteWidget() {
     }
 
     return (
-        <Widget name='Quote' header={`Daily Quote | ${dateToday()}`} resize={false} clear={true}>
-            <div className={styles.todaysQuote}>
-                <h3 className={styles.quoteText}>{`"${quote}"`}</h3>
-            </div>
-        </Widget>
+        <>
+                <Widget name='Quote' header={`Daily Quote | ${dateToday()}`} resize={false} clear={true} close={props.function} display={props.display}>
+                    <div className={styles.todaysQuote}>
+                        <h3 className={styles.quoteText}>{`"${quote}"`}</h3>
+                    </div>
+                </Widget>
+        </>
     )
 }
