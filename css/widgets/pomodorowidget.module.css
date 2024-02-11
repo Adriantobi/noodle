@@ -1,0 +1,65 @@
+.pomodoroTimer {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.timer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+}
+
+.timerValue {
+    display: flex;
+    font-size: 54px;
+}
+
+.timerControls {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    align-items: center;
+}
+
+.startStop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    font-size: 16px;
+    float: right;
+    cursor: pointer;
+    text-align: center;
+    border: 1.5px solid #fff;
+    border-radius: 10px;
+    width: 96px;
+}
+
+.timerOptions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.timerType {
+    border-bottom: 2px solid #93969a;
+    display: flex;
+    cursor: pointer;
+    padding-bottom: 10px;
+}
+
+.timerSettings, .resetTimer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.timerSettings svg, .resetTimer svg {
+    width: 18px;
+    height: 18px;
+}

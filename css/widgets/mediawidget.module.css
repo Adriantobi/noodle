@@ -1,0 +1,56 @@
+.spotifyEmbed {
+    height: calc(100% - 38px);
+}
+
+.spotifyEmbed::-webkit-scrollbar {
+    display: none;
+}
+
+.musicSettings {
+    display: flex;
+    justify-self: flex-end;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+    height: 38px;
+}
+
+.changePlaylist {
+    display: flex;
+    width: calc(100% - 100px);
+    justify-content: center;
+    padding: 2px;
+    margin: 6px;
+}
+
+.changePlaylist input {
+    background-color: transparent;
+    text-decoration: none;
+    color: #fff;
+    line-height: 25px;
+    min-width: 235px;
+    width: calc(100% - 24px);
+    font-size: 14px;
+    padding: 2px 10px 0px 10px;
+    border-radius: 8px;
+    border: 1.5px solid #515151;
+}
+
+.saveNewPlayList {
+    font-size: 14px;
+}
+
+.saveNewPlayList, .resetPlaylist {
+    cursor: pointer;
+}
+
+.resetPlaylist {
+    display: flex;
+}
+
+.resetPlaylist svg {
+    width: 18px;
+    height: 18px;
+}

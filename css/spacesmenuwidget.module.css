@@ -1,0 +1,357 @@
+.SpacesMenuWidgetWrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    height: 100%;
+    z-index: 1003;
+}
+
+.sideBarIcon {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    position: relative;
+    top: 60px;
+    cursor: pointer;
+}
+
+.SpacesMenu {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 300px;
+    height: calc(100% - 16px);
+    margin: 8px 0 0 8px;
+    background: rgb(35, 41, 49);
+    border-radius: 8px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.spacesSideBarHeader {
+    display: flex;
+    padding: 12px 14px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.noodleButton {
+    background-color: #2d333b;
+    border-radius: 8px;
+    padding: 2px 7px;
+    cursor: pointer;
+}
+
+.shufflerHeader {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0 16px;
+    justify-content: space-between;
+}
+
+.shufflerHeaderTitle {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    float: left;
+}
+
+.shufflerControls {
+    display: flex;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.shufflerLeft, .shufflerRight, .shufflerLeft svg, .shufflerRight svg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.shufflerDescription {
+    display: flex;
+    font-size: 12px;
+    color: #919498;
+    padding: 10px 16px;
+    cursor: default;
+}
+
+.spacesCategoryCarousel {
+    padding: 10px 11px 24px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+
+.spacesCategoryCarousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carouselRow {
+    width: fit-content;
+    display: flex;
+    transition: all ease-in-out 1s;
+}
+
+.spacesInfoBlock {
+    background-color: #2d333b;
+    display: flex;
+    flex-direction: column;
+    min-height: 94px;
+    padding: 8px 16px;
+}
+
+.spaceIndicator {
+    padding: 8px 4px 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    overflow: visible;
+}
+
+.shareSpaceName {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 2.5px;
+}
+
+.spaceNameText {
+    font-size: 14px;
+    /* padding: 0px 16px 0px 0px; */
+    float: left;
+    cursor: default;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 150px;
+    overflow: hidden;
+}
+
+.saveSpace, .playlist {
+    background-color: #232931;
+    display: flex;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    float: right;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.saveSpace {
+    overflow-y: visible;
+}
+
+.shareSpaceLinkButton {
+    display: flex;
+    font-size: 12px;
+    cursor: pointer;
+    color: #919498;
+}
+
+.spacesOptions {
+    display: flex;
+    margin-right: -8px;
+    align-items: center;
+    gap: 5px;
+}
+
+.spacesOptions svg {
+    width: 20px;
+    height: 20px;
+}
+
+.volumeSettingSection {
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5px 6px 14px 0;
+    margin-left: 5px;
+}
+
+.volumeStateToggle {
+    float: left;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+}
+
+.volumeStateToggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.volumeSlider {
+    width: 216px;
+    margin-left: 8px;
+    background: transparent;
+    overflow: visible; 
+    -webkit-appearance: none;
+    outline: none;
+}
+
+.volumeSlider::-webkit-slider-runnable-track, .volumeSliderForUserAudio::-webkit-slider-runnable-track {
+    height: 2px;
+    -webkit-appearance: none;
+    background: #93969a;
+    border-radius: 50px;
+}
+
+.volumeSlider::-webkit-slider-thumb, .volumeSliderForUserAudio::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #bfc1c4;
+    cursor: pointer;
+    border: 1px solid #474a4d;
+    border-radius: 50%;
+    margin-top: -6.5px;
+}
+
+.volumeSlider::-webkit-slider-runnable-track:hover {
+    background: #fff;
+}
+
+.volumeSlider::-webkit-slider-thumb:hover {
+    background-color: #fff;
+    border: 1px solid #fdfdfd;
+}
+
+.volumeSlider::-moz-range-track {
+    height: 2px;
+    -webkit-appearance: none;
+    background: #93969a;
+    border-radius: 50px;
+}
+
+.volumeSlider::-moz-range-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: #bfc1c4;
+    cursor: pointer;
+    border: 1px solid #474a4d;
+    border-radius: 50%;
+    margin-top: -6.5px;
+}
+
+.volumeSlider::-moz-range-track:hover {
+    background: #fff;
+}
+
+.volumeSlider::-moz-range-thumb:hover {
+    background-color: #fff;
+    border: 1px solid #fdfdfd;
+}
+
+.volumeSlider:hover{
+    opacity: 0.95;
+}
+
+.spaceCreatorInfo {
+    display: flex;
+    height: fit-content;
+    padding: 16px 20px;
+}
+
+.circleIcon {
+    width: 43px;
+    height: 43px;
+    border-radius: 100%;
+    transform: rotate(45deg);
+    background-image: linear-gradient(to right, #d6a9b3, #3e5470);
+    float: left;
+}
+
+.creatorTextContent {
+    display: flex;    
+    padding: 0 8px;
+    gap: 8px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.creatorUserNameSection {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;    
+    cursor: default;
+    background-image: linear-gradient(45deg, #ff5353, #e74d67, #b87ce5, #a16ced, #ba6ebf, #B3697E, #C0815E, #ffc747);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.creatorUserName {
+    display: flex;
+    padding-top: 5px;
+}
+
+.creatorUserNameSection sup svg {
+    width: 11px;
+    height: 11px;
+}
+
+.creatorLinks {
+    display: flex;
+    width: 100px;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.socialLinksForCreator {
+    display: flex;
+    width: max-content;
+    height: max-content;
+}
+
+.socialLinksForCreator svg {
+    width: 16px;
+    height: 16px;
+    color: #fff;
+}
+
+.spacesSideBarContent {
+    display: flex;
+    flex-grow: 1; 
+}
+
+.spacesSideBarFooterButtons {
+    display: flex;
+    padding: 4px 14px;
+    padding-bottom: 8px;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.noodleInfoButton {
+    display: flex;
+    color: #fff;
+    cursor: pointer;
+    border: 1.5px solid #515151;
+    border-radius: 8px;
+    height: 33px;
+    font-size: 14px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+}
+
+.noodleInfoButton a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.noodleInfoButton svg {
+    width: 18px;
+    height: 18px;
+}

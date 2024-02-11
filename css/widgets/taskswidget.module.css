@@ -1,0 +1,73 @@
+.newTaskItem {
+    display: flex;
+    color: #fff;
+    gap: 5px;
+    font-size: 14px;
+    border-radius: 7px;
+    padding: 6px 15px;
+    margin: 10px 20px 4px;
+    cursor: pointer;
+    font-weight: 100;
+}
+
+.newTaskItem:hover {
+    background: #515151;
+}
+
+.newTaskItem svg {
+    width: 14px;
+    height: 14px;
+    stroke: #fff;
+}
+
+.tasksList {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    height: calc(100% - 60px);
+    scrollbar-gutter: stable;
+}
+
+.tasksList::-webkit-scrollbar {
+    display: block;
+    width: 11px;
+}
+
+.tasksList::-webkit-scrollbar-thumb {
+    display: block;
+    border-radius: 10px;
+    background-color: rgb(118, 118, 118);
+    border: 3px solid rgb(35, 41, 49);
+}
+
+.taskProgress {
+    display: flex;
+    padding: 4px 12px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(35, 41, 49);
+    bottom: 12px;
+    width: 100%;
+    gap: 10px;
+}
+
+.progressBar {
+    height: 10px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #767676;
+}
+
+.innerProgressBar {
+    background-color: rgb(182, 182, 182);
+    border-radius: 5px;
+    max-width: 100%;
+    height: 10px;
+}
+
+.progressInfo {
+    font-size: 12px;
+    display: flex;
+    white-space: nowrap;
+}
