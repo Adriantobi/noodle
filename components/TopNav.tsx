@@ -30,6 +30,9 @@ type TopNavItemProps = {
 type TopNavProps = {
   widgetState: (arg0: string) => void;
   showElement: boolean;
+  setDisplayTimeOut: (arg0: number) => void;
+  enableHide: boolean;
+  setEnableHide: (arg0: boolean) => void;
 };
 
 function Appearance({ state, setState }: TopNavItemProps) {
@@ -150,8 +153,10 @@ export default function TopNav({ widgetState, showElement }: TopNavProps) {
       setScreenTypeIcon(<Minimize2 />);
       document.body.requestFullscreen();
     } else {
-      setScreenTypeIcon(<Maximize2 />);
-      document.exitFullscreen();
+      if (document.fullscreenElement) {
+        setScreenTypeIcon(<Maximize2 />);
+        document.exitFullscreen();
+      }
     }
   }, [fullScreen]);
 

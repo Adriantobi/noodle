@@ -1,7 +1,7 @@
 .WidgetCanvas {
   display: flex;
-  position: absolute;
-  height: calc(100% - 48px);
+  position: fixed;
+  height: calc(100% - 56px);
   width: 100%;
-  top: 56px;
+  bottom: 0;
 }

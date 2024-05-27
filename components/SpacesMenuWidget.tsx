@@ -31,6 +31,7 @@ type SpacesMenuWidgetProps = {
   menuState: boolean;
   setAllSpaceDetails: (arg0: string) => void;
   setIframeVolume: (arg0: number) => void;
+  showElement: boolean;
 };
 
 export default function SpacesMenuWidget({
@@ -41,6 +42,7 @@ export default function SpacesMenuWidget({
   menuState,
   setAllSpaceDetails,
   setIframeVolume,
+  showElement,
 }: SpacesMenuWidgetProps) {
   //Close MenuSpaces
   const [copy, setCopy] = useState(false);
@@ -179,7 +181,7 @@ export default function SpacesMenuWidget({
         </svg>
       </div>
 
-      <div className={styles.SpacesMenu}>
+      <div className={`${styles.SpacesMenu} ${showElement ? '' : `${styles.full}`}`}>
         <div className={styles.spacesSideBarHeader}>
           <div className={styles.noodleButton}>Search 🔎</div>
           <span className={styles.currentTime}>

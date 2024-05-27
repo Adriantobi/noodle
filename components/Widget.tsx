@@ -1,7 +1,7 @@
 import { Minus } from "lucide-react";
 import styles from "../css/widget.module.css";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export type WidgetProps = {
   title?: string;
@@ -37,50 +37,67 @@ export default function Widget({
   const [position, setPosition] = useState<{ x: number; y: number }>(
     initialPosition,
   );
+  const storedSize = savedLayout[`widget_${title ? title : ""}`]
+    ? savedLayout[`widget_${title ? title : ""}`].size
+    : { height: 0, width: 0 };
   const [resizeIcon, setResizeIcon] = useState(false);
   const [drag, setDrag] = useState(false);
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const widgetHeaderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    (
-      document.querySelector(`.${styles.widget}_${title}`) as HTMLDivElement
-    ).style.top = `${position.y}px`;
-    (
-      document.querySelector(`.${styles.widget}_${title}`) as HTMLDivElement
-    ).style.left = `${position.x}px`;
+    (widgetRef.current as HTMLDivElement).style.top = `${position.y}px`;
+    (widgetRef.current as HTMLDivElement).style.left = `${position.x}px`;
+    const size = {
+      height: (widgetRef.current as HTMLDivElement).getBoundingClientRect()
+        .height,
+      width: (widgetRef.current as HTMLDivElement).getBoundingClientRect()
+        .width,
+    };
     const newLayout = {
       ...savedLayout,
-      [`widget_${title ? title : ""}`]: { position, display },
+      [`widget_${title ? title : ""}`]: {
+        position,
+        display,
+        size: resize ? size : undefined,
+      },
     };
 
     localStorage.setItem("widget_layout_info", JSON.stringify(newLayout));
-  }, [position, title, display, savedLayout]);
+  }, [position, title, display, savedLayout, resize]);
 
-  // Update the current position if mouse is down
   useEffect(() => {
-    const onMouseMove = (event: MouseEvent) => {
+    const onMouseMove = (event: MouseEvent | TouchEvent) => {
+      const movementX =
+        "movementX" in event
+          ? event.movementX
+          : event.touches[0].clientX -
+            (widgetRef.current as HTMLDivElement).getBoundingClientRect().left;
+      const movementY =
+        "movementY" in event
+          ? event.movementY
+          : event.touches[0].clientY -
+            (widgetRef.current as HTMLDivElement).getBoundingClientRect().top;
+
       const windowHeight = (
-        (document.querySelector(`.${styles.widget}_${title}`) as HTMLDivElement)
-          .parentNode as HTMLElement
+        (widgetRef.current as HTMLDivElement).parentNode as HTMLElement
       ).getBoundingClientRect().height;
       const windowWidth = (
-        (document.querySelector(`.${styles.widget}_${title}`) as HTMLDivElement)
-          .parentNode as HTMLElement
+        (widgetRef.current as HTMLDivElement).parentNode as HTMLElement
       ).getBoundingClientRect().width;
 
       const widgetTopPos =
-        (
-          document.querySelector(`.${styles.widget}_${title}`) as HTMLDivElement
-        ).getBoundingClientRect().bottom + event.movementY;
+        (widgetRef.current as HTMLDivElement).getBoundingClientRect().bottom +
+        movementY;
       const widgetLeftPos =
-        (
-          document.querySelector(`.${styles.widget}_${title}`) as HTMLDivElement
-        ).getBoundingClientRect().right + event.movementX;
+        (widgetRef.current as HTMLDivElement).getBoundingClientRect().right +
+        movementX;
 
       const widgetWidth = (
-        document.querySelector(`.${styles.widget}_${title}`) as HTMLDivElement
+        widgetRef.current as HTMLDivElement
       ).getBoundingClientRect().width;
       const widgetHeight = (
-        document.querySelector(`.${styles.widget}_${title}`) as HTMLDivElement
+        widgetRef.current as HTMLDivElement
       ).getBoundingClientRect().height;
 
       if (drag) {
@@ -91,29 +108,21 @@ export default function Widget({
           widgetLeftPos <= windowWidth
         ) {
           setPosition({
-            x: position.x + event.movementX,
-            y: position.y + event.movementY,
+            x: position.x + movementX,
+            y: position.y + movementY,
           });
         }
 
-        (
-          document.querySelector(
-            `.${styles.widgetHeader}_${title}`,
-          ) as HTMLDivElement
-        ).style.cursor = "grabbing";
+        (widgetHeaderRef.current as HTMLDivElement).style.cursor = "grabbing";
         document.body.style.cursor = "grabbing";
       } else {
-        (
-          document.querySelector(
-            `.${styles.widgetHeader}_${title}`,
-          ) as HTMLDivElement
-        ).style.cursor = "grab";
+        (widgetHeaderRef.current as HTMLDivElement).style.cursor = "grab";
         document.body.style.cursor = "default";
       }
     };
 
     document.body.addEventListener("mousemove", onMouseMove);
-    /* document.body.addEventListener("touchmove", onMouseMove);*/
+    document.body.addEventListener("touchmove", onMouseMove);
 
     document.body.addEventListener("mouseleave", (e) => {
       setDrag(false);
@@ -126,23 +135,35 @@ export default function Widget({
     });
     document.body.addEventListener("touchend", (e) => {
       setDrag(false);
-      /* document.body.removeEventListener("touchmove", onMouseMove); */
+      document.body.removeEventListener("touchmove", onMouseMove);
     });
-  }, [drag, position, title]);
+  }, [drag, position]);
 
   return (
     <div
+      ref={widgetRef}
       style={{
-        height: defaultHeight ? `${defaultHeight}px` : "auto",
-        width: defaultWidth ? `${defaultWidth}px` : "",
+        height:
+          resize && storedSize?.height
+            ? `${storedSize.height}px`
+            : defaultHeight
+              ? `${defaultHeight}px`
+              : "auto",
+        width:
+          resize && storedSize?.width
+            ? `${storedSize.width}px`
+            : defaultWidth
+              ? `${defaultWidth}px`
+              : "",
       }}
-      className={`${styles.widget} ${styles.widget}_${title} ${resize ? `${styles.resizable}` : ""} ${clear ? `${styles.transparent}` : ""} ${display ? " " : `${styles.display}`}`}
+      className={`${styles.widget} ${resize ? `${styles.resizable}` : ""} ${clear ? `${styles.transparent}` : ""} ${display ? " " : `${styles.display}`}`}
       onMouseEnter={() => setResizeIcon(!resizeIcon)}
       onMouseMove={() => setResizeIcon(true)}
       onMouseLeave={() => setResizeIcon(!resizeIcon)}
     >
       <div
-        className={`${styles.widgetHeader} ${styles.widgetHeader}_${title} ${clear ? `${styles.transparent}` : ""}`}
+        ref={widgetHeaderRef}
+        className={`${styles.widgetHeader} ${clear ? `${styles.transparent}` : ""}`}
         onMouseDown={() => setDrag(true)}
         onTouchStart={() => setDrag(true)}
         id={styles.header}

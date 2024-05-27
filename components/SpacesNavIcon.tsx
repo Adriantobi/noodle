@@ -7,17 +7,24 @@ type SpacesNavIconProps = {
   currentState: boolean;
 };
 
-function BorderedImage({image, state}: {image: string, state: boolean}){
-  const width = 90
-  const height = width * 9/16
+function BorderedImage({ image, state }: { image: string; state: boolean }) {
+  const width = 90;
+  const height = (width * 9) / 16;
 
   return (
-    <div className={`${styles.spacesIconWrapper} ${state ? `${styles.borderActive}` : ''}`}>
+    <div
+      className={`${styles.spacesIconWrapper} ${state ? `${styles.borderActive}` : ""}`}
+    >
       <Image
         src={image}
         alt="logo"
         width={width}
         height={height}
+        sizes="100vw"
+        style={{
+          width: "100%",
+          height: "auto",
+        }}
         className={styles.spaces}
         unoptimized={true}
       />
@@ -31,8 +38,10 @@ export default function SpacesNavIcon({
   widgetState,
 }: SpacesNavIconProps) {
   return (
-    <div className={styles.SpacesNavIcon}  onClick={() => widgetState("spaces")}>
-      <div className={`${styles.spacesNavIconWrapper} ${currentState ? `${styles.active}` : ''}`}>
+    <div className={styles.SpacesNavIcon} onClick={() => widgetState("spaces")}>
+      <div
+        className={`${styles.spacesNavIconWrapper} ${currentState ? `${styles.active}` : ""}`}
+      >
         <BorderedImage image="/Space1.png" state={currentState} />
         <BorderedImage image="/Space3.png" state={currentState} />
         <BorderedImage image="/Space2.png" state={currentState} />

@@ -36,8 +36,8 @@ export default function Interact({
   const [showFortune, setShowFortune] = useState(false);
   const [showBreathe, setShowBreathe] = useState(false);
   const [showElement, setShowElement] = useState(true);
-  const [displayTimeOut, setDisplayTimeOut] = useState<number>(5);
-  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+  const [displayTimeOut, setDisplayTimeOut] = useState<number>(30);
+  const [enableHide, setEnableHide] = useState<boolean>(true);
 
   useEffect(() => {
     const savedLayout = JSON.parse(
@@ -55,39 +55,31 @@ export default function Interact({
   }, []);
 
   useEffect(() => {
-    if (showElement) {
-      timerRef.current = setTimeout(() => {
+    let timer: ReturnType<typeof setTimeout>;
+
+    const handleInteraction = () => {
+      clearTimeout(timer);
+      setShowElement(true);
+      startTimer();
+    };
+
+    const startTimer = () => {
+      timer = setTimeout(() => {
         setShowElement(false);
       }, displayTimeOut * 1000);
-    }
+    };
+
+    startTimer();
+
+    window.addEventListener("click", handleInteraction);
+    window.addEventListener("mousemove", handleInteraction);
 
     return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
+      clearTimeout(timer);
+      window.removeEventListener("click", handleInteraction);
+      window.removeEventListener("mousemove", handleInteraction);
     };
-  }, [showElement, displayTimeOut]);
-
-  useEffect(() => {
-    window.addEventListener("click", () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-      setShowElement(true);
-    });
-
-    window.addEventListener("mousemove", () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-      setShowElement(true);
-    });
-
-    return () => {
-      window.removeEventListener("click", () => setShowElement(true));
-      window.removeEventListener("mousemove", () => setShowElement(true));
-    };
-  }, []);
+  }, [displayTimeOut]);
 
   const setWidget = (widget: string) => {
     switch (widget) {
@@ -121,7 +113,13 @@ export default function Interact({
 
   return (
     <div className={styles.Interact}>
-      <TopNav widgetState={setWidget} showElement={showElement} />
+      <TopNav
+        widgetState={setWidget}
+        showElement={showElement}
+        setEnableHide={setEnableHide}
+        enableHide={enableHide}
+        setDisplayTimeOut={setDisplayTimeOut}
+      />
       <SpacesMenuWidget
         spaces={spaces}
         creator={creator}
@@ -130,6 +128,7 @@ export default function Interact({
         menuState={showSpaceMenuWidget}
         setAllSpaceDetails={setAllSpaceDetails}
         setIframeVolume={setIframeVolume}
+        showElement={showElement}
       />
       <WidgetNav
         widgetState={setWidget}
