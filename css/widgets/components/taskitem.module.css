@@ -1,0 +1,162 @@
+.taskItem {
+  display: flex;
+  padding: 6px 10px 2px 12px;
+  justify-content: space-between;
+  cursor: grab;
+  width: 100%;
+  position: relative;
+  overflow: visible;
+  gap: 0;
+  align-items: flex-start;
+}
+
+.taskItem:hover .dragItem {
+  display: flex;
+}
+
+.taskItem:hover .moreOptions {
+  display: flex;
+}
+
+.taskItem:hover .itemDetails {
+  margin-left: 0;
+}
+
+.dragItem {
+  cursor: grab;
+  display: none;
+  margin-top: 12px;
+}
+
+.itemDetails {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 8px;
+  align-items: flex-start;
+  border: 1px solid rgb(81, 81, 81);
+  border-radius: 5px;
+  margin-left: 8px;
+  padding: 10px;
+}
+
+.itemDetails:hover {
+  border: 1px solid rgb(185, 209, 255);
+}
+
+.itemDetails input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  margin: 0;
+  cursor: pointer;
+  min-width: 16px;
+  min-height: 16px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #919498;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemDetails input[type="checkbox"]::before {
+  content: "";
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23919498" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+  background-size: 16px 16px;
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemDetails input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.taskItemName {
+  font-size: 14px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  box-sizing: border-box;
+  width: calc(100% - 48px);
+  min-height: 18px;
+  height: 18px;
+  max-height: 400px;
+  overflow: hidden;
+  color: #fff;
+  padding-left: 4px;
+  resize: none;
+  font-weight: 100;
+}
+
+.taskItemName:hover {
+  background: #434446;
+  border-radius: 2px;
+}
+
+.taskItemName::placeholder {
+  color: #5c5d5e;
+}
+
+.iconButtons {
+  justify-content: center;
+  align-items: center;
+}
+
+.iconButtons svg {
+  width: 16px;
+  height: 16px;
+}
+
+.iconButtons svg:nth-child(1),
+.iconButtons svg:nth-child(2) {
+  margin-left: -12px;
+}
+
+.moreOptions {
+  display: none;
+  cursor: pointer;
+}
+
+.moreOptions svg {
+  width: 16px;
+  height: 16px;
+}
+
+.itemActions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  right: -85px;
+  top: 50px;
+  background-color: rgb(35, 41, 49);
+  min-width: 250px;
+  width: fit-content;
+  height: auto;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 4px 24px -1px;
+  border-radius: 5px;
+  overflow: hidden;
+  z-index: 1003;
+}
+
+.actionItem {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+
+.actionItem:hover {
+  background-color: rgb(81, 81, 81);
+}

@@ -1,0 +1,6 @@
+.Interact {
+  position: relative;
+  z-index: 1001;
+  height: 100%;
+  box-sizing: border-box;
+}

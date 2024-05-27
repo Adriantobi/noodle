@@ -1,0 +1,40 @@
+.appearanceSettings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settingSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.sectionTitle {
+  font-size: 12px;
+  color: rgb(145, 148, 152);
+  padding: 6px 0px;
+}
+
+.sectionOption {
+  margin: 6px 0;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.optionTitle {
+  width: 70%;
+}
+
+.themeButton {
+  padding: 6px 15px;
+  border: 1px solid #515151;
+  display: flex;
+  border-radius: 5px;
+}
+
+.themeButton svg {
+  width: 22px;
+  height: 22px;
+}

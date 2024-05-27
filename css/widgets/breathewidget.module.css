@@ -1,0 +1,29 @@
+.BreatheWidget {
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: rgb(35, 40, 46);
+  z-index: 1010;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.closeButton {
+  padding: 6px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.closeButton svg {
+  width: 18px;
+  height: 18px;
+}

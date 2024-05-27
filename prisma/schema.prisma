@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  icon  String  @db.VarChar(255)
+  Space Space[]
+}
+
+model Creator {
+  id        Int     @id @default(autoincrement())
+  name      String
+  instagram String  @db.VarChar(255)
+  youtube   String  @db.VarChar(255)
+  website   String  @db.VarChar(255)
+  twitter   String  @db.VarChar(255)
+  Space     Space[]
+}
+
+model Space {
+  id           Int      @id @default(autoincrement())
+  title        String   @db.VarChar(255)
+  link         String   @db.VarChar(255)
+  categoryName String
+  authorId     Int
+  Creator      Creator  @relation(fields: [authorId], references: [id])
+  Category     Category @relation(fields: [categoryName], references: [name])
+}

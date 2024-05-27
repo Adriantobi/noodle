@@ -1,0 +1,38 @@
+.WidgetButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 8px;
+  border: 1px solid rgb(81, 81, 81);
+}
+
+.WidgetButton:hover {
+  background-color: rgb(81, 81, 81);
+}
+
+.active {
+  color: rgb(227, 150, 133);
+  fill: rgb(227, 150, 133) !important;
+}
+
+.widgetIcon {
+  margin: 0;
+  padding: 0;
+  height: 20px;
+}
+
+.widgetIcon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.widgetLabel {
+  user-select: none;
+  font-size: 10px;
+  display: none;
+}

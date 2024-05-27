@@ -1,0 +1,32 @@
+.headerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.headerIcon {
+  display: flex;
+}
+
+.headerIcon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.headerText {
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.todaysQuote {
+  display: flex;
+  padding: 0 20px;
+}
+
+.quoteText {
+  display: flex;
+  margin: 0;
+}

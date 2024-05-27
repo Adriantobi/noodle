@@ -1,0 +1,69 @@
+.WidgetNavWrapper {
+  display: flex;
+  width: fit-content;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1;
+  margin-bottom: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.WidgetNav {
+  background: rgb(35, 41, 49);
+  height: 70px;
+  display: flex;
+  align-items: center;
+  max-width: 488px;
+  overflow: hidden;
+  border-radius: 13px;
+  border: 1px solid rgb(81, 81, 81);
+  transition: margin-bottom 0.5s;
+}
+
+.WidgetNavHidden {
+  margin-bottom: -86px;
+}
+
+.verticalSpacer {
+  height: 100%;
+  width: 1px;
+  border-left: 1px solid rgb(81, 81, 81);
+}
+
+.wrapper,
+.wrapperScroll {
+  padding: 0px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.wrapperScroll {
+  overflow-x: auto;
+  justify-content: normal;
+  cursor: default;
+}
+
+.wrapperScroll:hover {
+  margin-top: 10px;
+}
+
+.wrapperScroll::-webkit-scrollbar {
+  display: none;
+  height: 10px;
+  margin: 0 10px;
+}
+
+.wrapperScroll::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid rgb(35, 41, 49);
+  background: rgb(118, 118, 118);
+}
+
+.wrapperScroll:hover::-webkit-scrollbar,
+.wrapperScroll:active::-webkit-scrollbar {
+  display: flex;
+}
