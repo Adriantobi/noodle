@@ -36,8 +36,17 @@ export default function Interact({
   const [showFortune, setShowFortune] = useState(false);
   const [showBreathe, setShowBreathe] = useState(false);
   const [showElement, setShowElement] = useState(true);
-  const [displayTimeOut, setDisplayTimeOut] = useState<number>(30);
-  const [enableHide, setEnableHide] = useState<boolean>(true);
+  const [displayTimeOut, setDisplayTimeOut] = useState<number>(
+    localStorage.getItem("display_options")
+      ? JSON.parse(localStorage.getItem("display_options") || "{}")
+          .displayTimeOut
+      : 30,
+  );
+  const [enableHide, setEnableHide] = useState<boolean>(
+    localStorage.getItem("display_options")
+      ? JSON.parse(localStorage.getItem("display_options") || "{}").enableHide
+      : true,
+  );
 
   useEffect(() => {
     const savedLayout = JSON.parse(
@@ -65,11 +74,16 @@ export default function Interact({
 
     const startTimer = () => {
       timer = setTimeout(() => {
-        setShowElement(false);
+        if (enableHide) setShowElement(false);
       }, displayTimeOut * 1000);
     };
 
     startTimer();
+
+    localStorage.setItem(
+      "display_options",
+      JSON.stringify({ enableHide, displayTimeOut }),
+    );
 
     window.addEventListener("click", handleInteraction);
     window.addEventListener("mousemove", handleInteraction);
@@ -79,7 +93,7 @@ export default function Interact({
       window.removeEventListener("click", handleInteraction);
       window.removeEventListener("mousemove", handleInteraction);
     };
-  }, [displayTimeOut]);
+  }, [enableHide, displayTimeOut]);
 
   const setWidget = (widget: string) => {
     switch (widget) {
@@ -118,6 +132,7 @@ export default function Interact({
         showElement={showElement}
         setEnableHide={setEnableHide}
         enableHide={enableHide}
+        displayTimeOut={displayTimeOut}
         setDisplayTimeOut={setDisplayTimeOut}
       />
       <SpacesMenuWidget

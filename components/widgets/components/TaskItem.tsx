@@ -71,7 +71,7 @@ export default function TaskItem({
           </div>
 
           <div className={styles.itemDetails}>
-            <input type="checkbox" onClick={() => setChecked(!checked)} />
+            <input className={styles.itemCheckBox} type="checkbox" onClick={() => setChecked(!checked)} />
             <textarea
               ref={taskItemNameRef}
               className={styles.taskItemName}

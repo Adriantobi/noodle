@@ -44,7 +44,7 @@
   border: 1px solid rgb(185, 209, 255);
 }
 
-.itemDetails input[type="checkbox"] {
+.itemCheckBox {
   -webkit-appearance: none;
   appearance: none;
   background-color: transparent;
@@ -61,7 +61,7 @@
   align-items: center;
 }
 
-.itemDetails input[type="checkbox"]::before {
+.itemCheckBox::before {
   content: "";
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23919498" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>');
   background-size: 16px 16px;
@@ -73,7 +73,7 @@
   align-items: center;
 }
 
-.itemDetails input[type="checkbox"]:checked::before {
+.itemCheckBox:checked::before {
   transform: scale(1);
 }
 

@@ -6,13 +6,21 @@ import { Instagram, Mail, Twitter, User, Wrench, LinkIcon } from "lucide-react";
 type DropMenuProps = {
   full: boolean;
   modalStates: (arg0: string) => void;
+  dropDownRef: React.RefObject<HTMLDivElement>;
 };
 
-export default function DropMenu({ full, modalStates }: DropMenuProps) {
+export default function DropMenu({
+  full,
+  modalStates,
+  dropDownRef,
+}: DropMenuProps) {
   const { status } = useSession();
 
   return (
-    <div className={`${styles.dropDownMenu} ${full ? "" : `${styles.top}`}`}>
+    <div
+      ref={dropDownRef}
+      className={`${styles.dropDownMenu} ${full ? "" : `${styles.top}`}`}
+    >
       {status === "authenticated" ? (
         <span
           className={styles.dropDownMenuButton}
@@ -54,7 +62,7 @@ export default function DropMenu({ full, modalStates }: DropMenuProps) {
             xmlns="http://www.w3.org/2000/svg"
             stroke="#5865f2"
           >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g
               id="SVGRepo_tracerCarrier"
               strokeLinecap="round"

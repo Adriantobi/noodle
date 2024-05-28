@@ -44,6 +44,10 @@ export default function Widget({
   const [drag, setDrag] = useState(false);
   const widgetRef = useRef<HTMLDivElement>(null);
   const widgetHeaderRef = useRef<HTMLDivElement>(null);
+  const [clickPosition, setClickPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  });
 
   useEffect(() => {
     (widgetRef.current as HTMLDivElement).style.top = `${position.y}px`;
@@ -70,48 +74,40 @@ export default function Widget({
     const onMouseMove = (event: MouseEvent | TouchEvent) => {
       const movementX =
         "movementX" in event
-          ? event.movementX
+          ? event.clientX
           : event.touches[0].clientX -
             (widgetRef.current as HTMLDivElement).getBoundingClientRect().left;
       const movementY =
         "movementY" in event
-          ? event.movementY
+          ? event.clientY
           : event.touches[0].clientY -
             (widgetRef.current as HTMLDivElement).getBoundingClientRect().top;
 
-      const windowHeight = (
+      const windowRect = (
         (widgetRef.current as HTMLDivElement).parentNode as HTMLElement
-      ).getBoundingClientRect().height;
-      const windowWidth = (
-        (widgetRef.current as HTMLDivElement).parentNode as HTMLElement
-      ).getBoundingClientRect().width;
+      ).getBoundingClientRect();
 
-      const widgetTopPos =
-        (widgetRef.current as HTMLDivElement).getBoundingClientRect().bottom +
-        movementY;
-      const widgetLeftPos =
-        (widgetRef.current as HTMLDivElement).getBoundingClientRect().right +
-        movementX;
-
-      const widgetWidth = (
+      const widgetRect = (
         widgetRef.current as HTMLDivElement
-      ).getBoundingClientRect().width;
-      const widgetHeight = (
-        widgetRef.current as HTMLDivElement
-      ).getBoundingClientRect().height;
+      ).getBoundingClientRect();
 
       if (drag) {
-        if (
-          widgetTopPos >= 56 + widgetHeight &&
-          widgetLeftPos > widgetWidth &&
-          widgetTopPos <= windowHeight + 56 &&
-          widgetLeftPos <= windowWidth
-        ) {
-          setPosition({
-            x: position.x + movementX,
-            y: position.y + movementY,
-          });
-        }
+        const newPosX = movementX - windowRect.left - clickPosition.x;
+        const newPosY = movementY - windowRect.top - clickPosition.y;
+
+        const minX = 0;
+        const minY = 0;
+        const maxX = windowRect.width - widgetRect.width;
+        const maxY = windowRect.height - widgetRect.height;
+
+        // Adjust position if it exceeds boundaries
+        const adjustedX = Math.max(minX, Math.min(newPosX, maxX));
+        const adjustedY = Math.max(minY, Math.min(newPosY, maxY));
+
+        setPosition({
+          x: adjustedX,
+          y: adjustedY,
+        });
 
         (widgetHeaderRef.current as HTMLDivElement).style.cursor = "grabbing";
         document.body.style.cursor = "grabbing";
@@ -121,23 +117,24 @@ export default function Widget({
       }
     };
 
+    const onMouseUp = () => {
+      setDrag(false);
+      document.body.style.cursor = "default";
+      setClickPosition({ x: 0, y: 0 });
+    };
+
     document.body.addEventListener("mousemove", onMouseMove);
     document.body.addEventListener("touchmove", onMouseMove);
+    document.body.addEventListener("mouseup", onMouseUp);
+    document.body.addEventListener("touchend", onMouseUp);
 
-    document.body.addEventListener("mouseleave", (e) => {
-      setDrag(false);
+    return () => {
       document.body.removeEventListener("mousemove", onMouseMove);
-    });
-
-    document.body.addEventListener("mouseup", (e) => {
-      setDrag(false);
-      document.body.removeEventListener("mousemove", onMouseMove);
-    });
-    document.body.addEventListener("touchend", (e) => {
-      setDrag(false);
       document.body.removeEventListener("touchmove", onMouseMove);
-    });
-  }, [drag, position]);
+      document.body.removeEventListener("mouseup", onMouseUp);
+      document.body.removeEventListener("touchend", onMouseUp);
+    };
+  }, [drag, position, clickPosition]);
 
   return (
     <div
@@ -155,6 +152,7 @@ export default function Widget({
             : defaultWidth
               ? `${defaultWidth}px`
               : "",
+        transition: "position 250ms ease-in-out",
       }}
       className={`${styles.widget} ${resize ? `${styles.resizable}` : ""} ${clear ? `${styles.transparent}` : ""} ${display ? " " : `${styles.display}`}`}
       onMouseEnter={() => setResizeIcon(!resizeIcon)}
@@ -164,7 +162,21 @@ export default function Widget({
       <div
         ref={widgetHeaderRef}
         className={`${styles.widgetHeader} ${clear ? `${styles.transparent}` : ""}`}
-        onMouseDown={() => setDrag(true)}
+        onMouseDown={(event) => {
+          setDrag(true);
+          setClickPosition({
+            x:
+              event.clientX -
+              (
+                widgetHeaderRef.current as HTMLDivElement
+              ).getBoundingClientRect().left,
+            y:
+              event.clientY -
+              (
+                widgetHeaderRef.current as HTMLDivElement
+              ).getBoundingClientRect().top,
+          });
+        }}
         onTouchStart={() => setDrag(true)}
         id={styles.header}
       >

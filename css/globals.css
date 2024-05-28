@@ -110,3 +110,7 @@ a {
 /*     color-scheme: dark; */
 /*   } */
 /* } */
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}

@@ -1,10 +1,11 @@
 import styles from "../css/topnav.module.css";
 import account from "../css/modal/account.module.css";
 import appearance from "../css/modal/appearance.module.css";
+import check from "../css/widgets/components/taskitem.module.css";
 
 import DropMenu from "./DropMenu";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import {
   ChevronDown,
@@ -25,6 +26,11 @@ import Image from "next/image";
 type TopNavItemProps = {
   state: boolean;
   setState: (arg0: string) => void;
+  ignoreRef: React.RefObject<HTMLDivElement>;
+  setDisplayTimeOut?: (arg0: number) => void;
+  enableHide?: boolean;
+  setEnableHide?: (arg0: boolean) => void;
+  displayTimeOut?: number;
 };
 
 type TopNavProps = {
@@ -33,9 +39,18 @@ type TopNavProps = {
   setDisplayTimeOut: (arg0: number) => void;
   enableHide: boolean;
   setEnableHide: (arg0: boolean) => void;
+  displayTimeOut: number;
 };
 
-function Appearance({ state, setState }: TopNavItemProps) {
+function Appearance({
+  state,
+  setState,
+  enableHide,
+  setEnableHide,
+  setDisplayTimeOut,
+  displayTimeOut,
+  ignoreRef,
+}: TopNavItemProps) {
   return (
     <>
       {state ? (
@@ -43,21 +58,51 @@ function Appearance({ state, setState }: TopNavItemProps) {
           title={"Appearance Settings"}
           setState={setState}
           name={"appearance"}
+          ignoreRef={ignoreRef}
         >
           <div className={appearance.appearanceSettings}>
             <div className={appearance.settingSection}>
               <span className={appearance.sectionTitle}>THEME</span>
-              <div className={appearance.sectionOption}>
-                <span className={appearance.optionTitle}>Dark Mode</span>
-                <span className={appearance.themeButton}>
-                  <Moon />
-                </span>
+              <div className={appearance.optionsWrapper}>
+                <div className={appearance.sectionOption}>
+                  <span className={appearance.optionTitle}>Dark Mode</span>
+                  <span className={appearance.themeButton}>
+                    <Moon />
+                  </span>
+                </div>
               </div>
             </div>
             <div className={appearance.settingSection}>
               <span className={appearance.sectionTitle}>FOCUS MODE</span>
-              <div className={appearance.sectionOption}>
-                <span className={appearance.optionTitle}>Hide Elements</span>
+              <div className={appearance.optionsWrapper}>
+                <div className={appearance.sectionOption}>
+                  <span className={appearance.optionTitle}>Hide Elements</span>
+                  <input
+                    className={check.itemCheckBox}
+                    type="checkbox"
+                    defaultChecked={enableHide}
+                    onClick={() =>
+                      setEnableHide ? setEnableHide(!enableHide) : null
+                    }
+                  />
+                </div>
+                <div className={appearance.sectionOption}>
+                  <span className={appearance.optionTitle}>
+                    Hide After (seconds)
+                  </span>
+                  <input
+                    className={`${account.settingInput} ${appearance.settingInput}`}
+                    type="number"
+                    value={displayTimeOut ? displayTimeOut : ""}
+                    onChange={(e: any) =>
+                      setDisplayTimeOut
+                        ? setDisplayTimeOut(
+                            parseInt(e.target.value ? e.target.value : 0),
+                          )
+                        : null
+                    }
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -67,13 +112,18 @@ function Appearance({ state, setState }: TopNavItemProps) {
   );
 }
 
-function Account({ state, setState }: TopNavItemProps) {
+function Account({ state, setState, ignoreRef }: TopNavItemProps) {
   const { data } = useSession();
 
   return (
     <>
       {state ? (
-        <Modal title={"My account"} setState={setState} name={"account"}>
+        <Modal
+          title={"My account"}
+          ignoreRef={ignoreRef}
+          setState={setState}
+          name={"account"}
+        >
           <div className={account.userOptions}>
             <div className={account.userImageWrapper}>
               <Image
@@ -118,11 +168,21 @@ function Account({ state, setState }: TopNavItemProps) {
   );
 }
 
-export default function TopNav({ widgetState, showElement }: TopNavProps) {
+export default function TopNav({
+  widgetState,
+  showElement,
+  setDisplayTimeOut,
+  setEnableHide,
+  enableHide,
+  displayTimeOut,
+}: TopNavProps) {
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
   const [mobile, setMobile] = useState(false);
   const [screenTypeIcon, setScreenTypeIcon] = useState(<Maximize2 />);
+  const userIconRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const dropDownRef = useRef<HTMLDivElement>(null);
   const { status, data } = useSession();
 
   useEffect(() => {
@@ -147,6 +207,30 @@ export default function TopNav({ widgetState, showElement }: TopNavProps) {
     resize();
     window.addEventListener("resize", resize);
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropDownRef.current &&
+        userIconRef.current &&
+        !dropDownRef.current.contains(event.target as Node) &&
+        !userIconRef.current.contains(event.target as Node) &&
+        (!modalRef.current || !modalRef.current.contains(event.target as Node))
+      ) {
+        setDropDownOpen(false);
+      }
+    };
+
+    if (dropDownOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dropDownOpen]);
 
   useEffect(() => {
     if (fullScreen) {
@@ -185,8 +269,20 @@ export default function TopNav({ widgetState, showElement }: TopNavProps) {
 
   return (
     <>
-      <Account state={showAccountModal} setState={setModals} />
-      <Appearance state={showAppearanceModal} setState={setModals} />
+      <Account
+        ignoreRef={modalRef}
+        state={showAccountModal}
+        setState={setModals}
+      />
+      <Appearance
+        ignoreRef={modalRef}
+        state={showAppearanceModal}
+        setEnableHide={setEnableHide}
+        setDisplayTimeOut={setDisplayTimeOut}
+        enableHide={enableHide}
+        setState={setModals}
+        displayTimeOut={displayTimeOut}
+      />
       <div
         className={`${styles.TopNav} ${!showElement ? `${styles.TopNavHidden}` : ""}`}
       >
@@ -300,6 +396,7 @@ export default function TopNav({ widgetState, showElement }: TopNavProps) {
             <span className={styles.verticalSpacer} />
 
             <div
+              ref={userIconRef}
               className={`${styles.settingsButton} ${styles.noodleTopNavButton}`}
               onClick={() => setDropDownOpen(!dropDownOpen)}
             >
@@ -316,7 +413,11 @@ export default function TopNav({ widgetState, showElement }: TopNavProps) {
       </div>
 
       {dropDownOpen ? (
-        <DropMenu full={showElement} modalStates={setModals} />
+        <DropMenu
+          full={showElement}
+          dropDownRef={dropDownRef}
+          modalStates={setModals}
+        />
       ) : null}
     </>
   );

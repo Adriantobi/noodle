@@ -6,11 +6,12 @@ type ModalProps = {
   setState: (arg0: string) => void;
   name: string;
   children: React.ReactNode;
+  ignoreRef?: React.RefObject<HTMLDivElement>;
 };
 
-export default function Modal({ title, setState, name, children }: ModalProps) {
+export default function Modal({ title, setState, ignoreRef, name, children }: ModalProps) {
   return (
-    <div className={styles.modalWrapper} onClick={() => setState(name)}>
+    <div ref={ignoreRef} className={styles.modalWrapper} onClick={() => setState(name)}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <div className={styles.modalHeader}>
           <span className={styles.modalTitle}>{title}</span>
