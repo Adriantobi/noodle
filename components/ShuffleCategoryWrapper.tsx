@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import styles from "../css/shufflecategorywrapper.module.css";
 
@@ -19,38 +19,50 @@ function CategoryItem({
   src,
   setAllSpaceDetails,
 }: CategoryItemProps) {
-  const showTooltip = (e: any) => {
-    const tooltip = e.target.classList.contains(`.${styles.noodleToolTip}`)
-      ? e.target
-      : e.target.querySelector(`:scope .${styles.noodleToolTip}`);
-    tooltip.style.left =
-      e.pageX + tooltip.clientWidth + 10 < document.body.clientWidth
-        ? e.pageX + 10 + "px"
-        : document.body.clientWidth + 5 - tooltip.clientWidth + "px";
-    tooltip.style.top =
-      e.pageY + tooltip.clientHeight + 10 < document.body.clientHeight
-        ? e.pageY + 10 + "px"
-        : document.body.clientHeight + 5 - tooltip.clientHeight + "px";
-  };
+  const toolTipRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tooltips = document.querySelectorAll(
-      `.${styles.shuffleCategoryWrapper}`,
+    const showTooltip = (e: MouseEvent) => {
+      (toolTipRef.current as HTMLDivElement).style.left =
+        e.clientX + (toolTipRef.current as HTMLDivElement).clientWidth + 10 <
+        document.body.clientWidth
+          ? e.clientX -
+            (toolTipRef.current as HTMLDivElement).clientWidth -
+            10 +
+            "px"
+          : document.body.clientWidth +
+            5 +
+            (toolTipRef.current as HTMLDivElement).clientWidth +
+            "px";
+      (toolTipRef.current as HTMLDivElement).style.top =
+        e.clientY + (toolTipRef.current as HTMLDivElement).clientHeight + 10 <
+        document.body.clientHeight
+          ? e.clientY - 85 + "px"
+          : document.body.clientHeight +
+            5 -
+            (toolTipRef.current as HTMLDivElement).clientHeight +
+            "px";
+    };
+
+    (wrapperRef.current as HTMLDivElement).addEventListener(
+      "mousemove",
+      showTooltip,
     );
-    for (var i = 0; i < tooltips.length; i++) {
-      tooltips[i].addEventListener("mousemove", showTooltip);
-    }
   }, []);
 
   return (
     <div
+      ref={wrapperRef}
       className={styles.shuffleCategoryWrapper}
       onClick={() => {
         setAllSpaceDetails(category);
       }}
     >
       <div className={styles.shuffleCategoryButton}>
-        <span className={styles.noodleToolTip}>{category}</span>
+        <span className={styles.noodleToolTip} ref={toolTipRef}>
+          {category}
+        </span>
         <picture>
           <img
             className={styles.spaceCategoryIcon}
