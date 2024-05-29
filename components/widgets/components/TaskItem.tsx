@@ -103,6 +103,7 @@ export default function TaskItem({
             <input
               className={styles.itemCheckBox}
               type="checkbox"
+              defaultChecked={checked !== null ? checked : false}
               onClick={() => setChecked(!checked)}
             />
             <textarea
