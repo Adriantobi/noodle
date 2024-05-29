@@ -20,25 +20,32 @@ export default function TasksWidget({
 }: WidgetProps) {
   const savedTasks = JSON.parse(localStorage.getItem("task_list") || "{}");
   const [taskList, setTaskList] = useState<Task[]>([]);
-  const [lastTaskKey, setLastTaskKey] = useState(0);
+  const [lastTaskKey, setLastTaskKey] = useState(-1);
   const [totalCheckedTasks, setTotalCheckedTasks] = useState(0);
 
   useEffect(() => {
     if (Object.keys(savedTasks).length > 0) {
-      const tasks = Object.keys(savedTasks).map((task) => ({
-        taskKey: parseInt(task),
-        isChecked: savedTasks[task].checked,
-        inputText: savedTasks[task].taskText,
-      })).reverse();
+      const tasks = Object.keys(savedTasks)
+        .map((task) => ({
+          taskKey: parseInt(task),
+          isChecked: savedTasks[task].checked,
+          inputText: savedTasks[task].taskText,
+        }))
+        .reverse();
       setTaskList(tasks);
-      setLastTaskKey(tasks[tasks.length - 1].taskKey + 1);
+
+      const maxTaskKey = Math.max(...tasks.map((task) => task.taskKey));
+      setLastTaskKey(maxTaskKey);
     }
   }, []);
 
   const addItem = () => {
-    const newTaskKey = lastTaskKey;
-    setTaskList((prevTaskList) => [{ taskKey: newTaskKey }, ...prevTaskList]);
-    setLastTaskKey(newTaskKey + 1);
+    console.log(lastTaskKey);
+    setTaskList((prevTaskList) => [
+      { taskKey: lastTaskKey + 1, isChecked: false, inputText: "" },
+      ...prevTaskList,
+    ]);
+    setLastTaskKey(lastTaskKey + 1);
   };
 
   const removeTask = (taskKey: number) => {
