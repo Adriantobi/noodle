@@ -7,17 +7,24 @@ export type TaskItemProps = {
   taskKey: number;
   removeTask: (arg0: number) => void;
   changeCheckedTasks: (arg0: string) => void;
+  isChecked?: boolean;
+  inputText?: string;
 };
 
 export default function TaskItem({
   taskKey,
   removeTask,
   changeCheckedTasks,
+  isChecked,
+  inputText,
 }: TaskItemProps) {
-  const [checked, setChecked] = useState<boolean | null>(null);
+  const [checked, setChecked] = useState<boolean | null>(
+    isChecked ? isChecked : null,
+  );
   const [display, setDisplay] = useState(true);
   const [more, setMore] = useState(false);
-  const [taskText, setTaskText] = useState("");
+  const [taskText, setTaskText] = useState(inputText ? inputText : "");
+  const savedTasks = JSON.parse(localStorage.getItem("task_list") || "{}");
   const taskItemNameRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -39,12 +46,34 @@ export default function TaskItem({
       (taskItemNameRef.current as HTMLTextAreaElement).style.color =
         "rgb(255, 255, 255)";
       changeCheckedTasks("remove");
+      removeLocalSavedTask();
     }
   }, [checked]);
+
+  useEffect(() => {
+    const newTask = {
+      ...savedTasks,
+      [taskKey]: {
+        taskText: taskText,
+        checked: checked,
+      },
+    };
+
+    localStorage.setItem("task_list", JSON.stringify(newTask));
+  }, [taskText, checked, savedTasks, taskKey]);
+
+  const removeLocalSavedTask = () => {
+    const newTask = {
+      ...savedTasks,
+    };
+    delete newTask[taskKey];
+    localStorage.setItem("task_list", JSON.stringify(newTask));
+  };
 
   const deleteTask = () => {
     setDisplay(false);
     removeTask(taskKey);
+    removeLocalSavedTask();
     if (checked === true) {
       changeCheckedTasks("remove");
     }
@@ -71,7 +100,11 @@ export default function TaskItem({
           </div>
 
           <div className={styles.itemDetails}>
-            <input className={styles.itemCheckBox} type="checkbox" onClick={() => setChecked(!checked)} />
+            <input
+              className={styles.itemCheckBox}
+              type="checkbox"
+              onClick={() => setChecked(!checked)}
+            />
             <textarea
               ref={taskItemNameRef}
               className={styles.taskItemName}

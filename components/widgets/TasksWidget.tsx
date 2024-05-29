@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 
 type Task = {
   taskKey: number;
+  isChecked?: boolean;
+  inputText?: string;
 };
 
 export default function TasksWidget({
@@ -16,12 +18,27 @@ export default function TasksWidget({
   defaultHeight,
   defaultWidth,
 }: WidgetProps) {
+  const savedTasks = JSON.parse(localStorage.getItem("task_list") || "{}");
   const [taskList, setTaskList] = useState<Task[]>([]);
+  const [lastTaskKey, setLastTaskKey] = useState(0);
   const [totalCheckedTasks, setTotalCheckedTasks] = useState(0);
 
+  useEffect(() => {
+    if (Object.keys(savedTasks).length > 0) {
+      const tasks = Object.keys(savedTasks).map((task) => ({
+        taskKey: parseInt(task),
+        isChecked: savedTasks[task].checked,
+        inputText: savedTasks[task].taskText,
+      })).reverse();
+      setTaskList(tasks);
+      setLastTaskKey(tasks[tasks.length - 1].taskKey + 1);
+    }
+  }, []);
+
   const addItem = () => {
-    const newTaskKey = taskList.length;
+    const newTaskKey = lastTaskKey;
     setTaskList((prevTaskList) => [{ taskKey: newTaskKey }, ...prevTaskList]);
+    setLastTaskKey(newTaskKey + 1);
   };
 
   const removeTask = (taskKey: number) => {
@@ -59,14 +76,25 @@ export default function TasksWidget({
           <span>Add task</span>
         </div>
         <div className={styles.tasksList}>
-          {taskList.map((task) => (
-            <TaskItem
-              key={task.taskKey}
-              taskKey={task.taskKey}
-              removeTask={removeTask}
-              changeCheckedTasks={changeCheckedTasks}
-            />
-          ))}
+          {taskList.map((task) =>
+            task.inputText || task.isChecked ? (
+              <TaskItem
+                key={task.taskKey}
+                taskKey={task.taskKey}
+                removeTask={removeTask}
+                changeCheckedTasks={changeCheckedTasks}
+                isChecked={task.isChecked}
+                inputText={task.inputText}
+              />
+            ) : (
+              <TaskItem
+                key={task.taskKey}
+                taskKey={task.taskKey}
+                removeTask={removeTask}
+                changeCheckedTasks={changeCheckedTasks}
+              />
+            ),
+          )}
         </div>
         <div className={styles.taskProgress}>
           <div className={styles.progressBar}>
