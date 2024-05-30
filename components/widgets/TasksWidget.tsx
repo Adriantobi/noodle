@@ -49,6 +49,13 @@ export default function TasksWidget({
   };
 
   const removeTask = (taskKey: number) => {
+    const newTask = {
+      ...savedTasks,
+    };
+    delete newTask[taskKey];
+
+    localStorage.setItem("task_list", JSON.stringify(newTask));
+ 
     setTaskList((prevTaskList) =>
       prevTaskList.filter((task) => task.taskKey !== taskKey),
     );

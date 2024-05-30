@@ -21,7 +21,6 @@ export default function TaskItem({
   const [checked, setChecked] = useState<boolean | null>(
     isChecked ? isChecked : null,
   );
-  const [display, setDisplay] = useState(true);
   const [more, setMore] = useState(false);
   const [taskText, setTaskText] = useState(inputText ? inputText : "");
   const savedTasks = JSON.parse(localStorage.getItem("task_list") || "{}");
@@ -46,7 +45,6 @@ export default function TaskItem({
       (taskItemNameRef.current as HTMLTextAreaElement).style.color =
         "rgb(255, 255, 255)";
       changeCheckedTasks("remove");
-      removeLocalSavedTask();
     }
   }, [checked]);
 
@@ -62,19 +60,12 @@ export default function TaskItem({
     localStorage.setItem("task_list", JSON.stringify(newTask));
   }, [taskText, checked, savedTasks, taskKey]);
 
-  const removeLocalSavedTask = () => {
-    const newTask = {
-      ...savedTasks,
-    };
-    delete newTask[taskKey];
-    localStorage.setItem("task_list", JSON.stringify(newTask));
-  };
-
   const deleteTask = () => {
-    setDisplay(false);
     removeTask(taskKey);
-    removeLocalSavedTask();
-    if (checked === true) {
+    if (
+      checked === true &&
+      (taskItemNameRef.current as HTMLTextAreaElement).value === ""
+    ) {
       changeCheckedTasks("remove");
     }
   };
@@ -91,47 +82,52 @@ export default function TaskItem({
   };
 
   return (
-    <>
-      {display ? (
-        <div className={styles.taskItem} key={taskKey} draggable={true}>
-          <div className={`${styles.dragItem} ${styles.iconButtons}`}>
-            <MoreVertical />
-            <MoreVertical />
-          </div>
+    <div className={styles.taskItem} key={taskKey} draggable={true}>
+      <div className={`${styles.dragItem} ${styles.iconButtons}`}>
+        <MoreVertical />
+        <MoreVertical />
+      </div>
 
-          <div className={styles.itemDetails}>
-            <input
-              className={styles.itemCheckBox}
-              type="checkbox"
-              defaultChecked={checked !== null ? checked : false}
-              onClick={() => setChecked(!checked)}
-            />
-            <textarea
-              ref={taskItemNameRef}
-              className={styles.taskItemName}
-              onChange={handleChange}
-              placeholder="Add a task"
-              value={taskText}
-              disabled={checked === true ? true : false}
-            />
-            <span className={styles.moreOptions} onClick={() => deleteTask()}>
-              {" "}
-              {/*setMore(!more)*/}
-              {/*<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>*/}
-              <Trash />
-            </span>
-          </div>
+      <div className={styles.itemDetails}>
+        <input
+          className={styles.itemCheckBox}
+          type="checkbox"
+          defaultChecked={checked !== null ? checked : false}
+          onClick={() => {
+            if (
+              (taskItemNameRef.current as HTMLTextAreaElement).value === null ||
+              (taskItemNameRef.current as HTMLTextAreaElement).value === ""
+            ) {
+              deleteTask();
+            } else {
+              setChecked(!checked);
+            }
+          }}
+        />
+        <textarea
+          ref={taskItemNameRef}
+          className={styles.taskItemName}
+          onChange={handleChange}
+          placeholder="Add a task"
+          value={taskText}
+          disabled={checked === true ? true : false}
+        />
+        <span className={styles.moreOptions} onClick={() => deleteTask()}>
+          {" "}
+          {/*setMore(!more)*/}
+          {/*<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>*/}
+          <Trash />
+        </span>
+      </div>
 
-          {more ? (
-            <div className={styles.itemActions}>
-              <div className={styles.actionItem}>Edit</div>
-              <div className={styles.actionItem} onClick={() => deleteTask()}>
-                Delete
-              </div>
-            </div>
-          ) : null}
+      {more ? (
+        <div className={styles.itemActions}>
+          <div className={styles.actionItem}>Edit</div>
+          <div className={styles.actionItem} onClick={() => deleteTask()}>
+            Delete
+          </div>
         </div>
       ) : null}
-    </>
+    </div>
   );
 }
