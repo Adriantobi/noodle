@@ -40,6 +40,7 @@ type TopNavProps = {
   enableHide: boolean;
   setEnableHide: (arg0: boolean) => void;
   displayTimeOut: number;
+  mobile: boolean;
 };
 
 function Appearance({
@@ -175,10 +176,10 @@ export default function TopNav({
   setEnableHide,
   enableHide,
   displayTimeOut,
+  mobile,
 }: TopNavProps) {
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
-  const [mobile, setMobile] = useState(false);
   const [screenTypeIcon, setScreenTypeIcon] = useState(<Maximize2 />);
   const userIconRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -193,19 +194,6 @@ export default function TopNav({
         setFullScreen(false);
       }
     });
-  }, []);
-
-  useEffect(() => {
-    const resize = () => {
-      if (window.innerWidth < 620) {
-        setMobile(true);
-      } else {
-        setMobile(false);
-      }
-    };
-
-    resize();
-    window.addEventListener("resize", resize);
   }, []);
 
   useEffect(() => {

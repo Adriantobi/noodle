@@ -13,34 +13,20 @@ import {
   Sprout,
   Wind,
 } from "lucide-react";
-import { useEffect, useState } from "react";
 
 type SideNavProps = {
   widgetState: (arg0: string) => void;
   states: boolean[];
   showElement: boolean;
+  mobile: boolean;
 };
 
 export default function WidgetNav({
   widgetState,
   states,
   showElement,
+  mobile,
 }: SideNavProps) {
-  const [mobile, setMobile] = useState(false);
-
-  useEffect(() => {
-    const resize = () => {
-      if (window.innerWidth < 620) {
-        setMobile(true);
-      } else {
-        setMobile(false);
-      }
-    };
-
-    resize();
-    window.addEventListener("resize", resize);
-  }, []);
-
   return (
     <div className={styles.WidgetNavWrapper}>
       <div

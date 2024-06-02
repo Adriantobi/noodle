@@ -47,6 +47,20 @@ export default function Interact({
       ? JSON.parse(localStorage.getItem("display_options") || "{}").enableHide
       : true,
   );
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const resize = () => {
+      if (window.innerWidth < 620) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+  }, []);
 
   useEffect(() => {
     const savedLayout = JSON.parse(
@@ -134,6 +148,7 @@ export default function Interact({
         enableHide={enableHide}
         displayTimeOut={displayTimeOut}
         setDisplayTimeOut={setDisplayTimeOut}
+        mobile={mobile}
       />
       <SpacesMenuWidget
         spaces={spaces}
@@ -158,6 +173,7 @@ export default function Interact({
           showBreathe,
         ]}
         showElement={showElement}
+        mobile={mobile}
       />
       <WidgetCanvas
         states={[

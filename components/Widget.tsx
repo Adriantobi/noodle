@@ -73,15 +73,9 @@ export default function Widget({
   useEffect(() => {
     const onMouseMove = (event: MouseEvent | TouchEvent) => {
       const movementX =
-        "movementX" in event
-          ? event.clientX
-          : event.touches[0].clientX -
-            (widgetRef.current as HTMLDivElement).getBoundingClientRect().left;
+        "clientX" in event ? event.clientX : event.touches[0].clientX;
       const movementY =
-        "movementY" in event
-          ? event.clientY
-          : event.touches[0].clientY -
-            (widgetRef.current as HTMLDivElement).getBoundingClientRect().top;
+        "clientY" in event ? event.clientY : event.touches[0].clientY;
 
       const windowRect = (
         (widgetRef.current as HTMLDivElement).parentNode as HTMLElement
@@ -121,6 +115,9 @@ export default function Widget({
       setDrag(false);
       document.body.style.cursor = "default";
       setClickPosition({ x: 0, y: 0 });
+      if (widgetHeaderRef.current) {
+        (widgetHeaderRef.current as HTMLDivElement).style.cursor = "grab";
+      }
     };
 
     document.body.addEventListener("mousemove", onMouseMove);
@@ -152,7 +149,6 @@ export default function Widget({
             : defaultWidth
               ? `${defaultWidth}px`
               : "",
-        transition: "position 250ms ease-in-out",
       }}
       className={`${styles.widget} ${resize ? `${styles.resizable}` : ""} ${clear ? `${styles.transparent}` : ""} ${display ? " " : `${styles.display}`}`}
       onMouseEnter={() => setResizeIcon(!resizeIcon)}
@@ -177,7 +173,21 @@ export default function Widget({
               ).getBoundingClientRect().top,
           });
         }}
-        onTouchStart={() => setDrag(true)}
+        onTouchStart={(event) => {
+          setDrag(true);
+          setClickPosition({
+            x:
+              event.touches[0].clientX -
+              (
+                widgetHeaderRef.current as HTMLDivElement
+              ).getBoundingClientRect().left,
+            y:
+              event.touches[0].clientY -
+              (
+                widgetHeaderRef.current as HTMLDivElement
+              ).getBoundingClientRect().top,
+          });
+        }}
         id={styles.header}
       >
         <div className={styles.widgetTitle}>{header}</div>
