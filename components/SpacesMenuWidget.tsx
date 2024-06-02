@@ -159,24 +159,45 @@ export default function SpacesMenuWidget({
   return (
     <div
       className={`${styles.SpacesMenuWidgetWrapper}`}
-      style={{ display: menuState ? "flex" : "none" }}
+      style={{
+        marginLeft: menuState ? "8px" : "-300px",
+        transition: "margin-left 0.35s ease-in-out",
+      }}
     >
       <div className={styles.sideBarIcon} onClick={() => widgetState("spaces")}>
-        <svg
-          width="26"
-          height="42"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M0 0h21a5 5 0 015 5v32a5 5 0 01-5 5H0V0z"
-            fill="#3C4551"
-          ></path>
-          <path
-            d="M7.923 21.64a.778.778 0 010-1.28l6.606-4.576a.778.778 0 011.221.639v9.154a.778.778 0 01-1.22.64l-6.607-4.578z"
-            fill="#fff"
-          ></path>
-        </svg>
+        {menuState ? (
+          <svg
+            width="26"
+            height="42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h21a5 5 0 015 5v32a5 5 0 01-5 5H0V0z"
+              fill="#3C4551"
+            ></path>
+            <path
+              d="M7.923 21.64a.778.778 0 010-1.28l6.606-4.576a.778.778 0 011.221.639v9.154a.778.778 0 01-1.22.64l-6.607-4.578z"
+              fill="#fff"
+            ></path>
+          </svg>
+        ) : (
+          <svg
+            width="26"
+            height="42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h21a5 5 0 015 5v32a5 5 0 01-5 5H0V0z"
+              fill="#3C4551"
+            ></path>
+            <path
+              d="M17.744 21.64a.778.778 0 000-1.28l-6.607-4.576a.778.778 0 00-1.22.639v9.154c0 .628.704.997 1.22.64l6.607-4.578z"
+              fill="#fff"
+            ></path>
+          </svg>
+        )}
       </div>
 
       <div
