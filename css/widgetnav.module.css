@@ -68,8 +68,9 @@
   display: flex;
 }
 
-@media (width < 620) {
+@media (width < 620px) {
+  .wrapperScroll,
   .wrapperScroll:hover {
-    margin-top: 0px;
+    margin-top: 0px !important;
   }
 }

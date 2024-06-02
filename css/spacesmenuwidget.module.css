@@ -5,6 +5,9 @@
   height: 100%;
   z-index: 1003;
   max-width: fit-content;
+  transition:
+    margin-left 0.35s ease-in-out,
+    height 0.3s ease-in-out;
 }
 
 .sideBarIcon {
@@ -12,7 +15,7 @@
   height: fit-content;
   display: flex;
   position: relative;
-  top: 60px;
+  top: 50px;
   cursor: pointer;
 }
 
@@ -20,8 +23,8 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-width: 300px;
   height: calc(100% - 64px);
+  max-width: 300px;
   background: rgb(35, 41, 49);
   border-radius: 8px;
   color: #fff;
@@ -29,7 +32,7 @@
   transition: height ease-in-out 0.3s;
 }
 
-.full {
+.fullNav {
   height: calc(100% - 16px) !important;
 }
 
@@ -379,7 +382,15 @@
 }
 
 @media (width < 620px) {
+  .SpacesMenuWidgetWrapper {
+    height: calc(100% - 142px);
+  }
+
   .SpacesMenu {
-    height: calc(100% - 144px);
+    height: 100%;
+  }
+
+  .fullWrapper {
+    height: 100% !important;
   }
 }

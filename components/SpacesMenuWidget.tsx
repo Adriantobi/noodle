@@ -158,10 +158,9 @@ export default function SpacesMenuWidget({
 
   return (
     <div
-      className={`${styles.SpacesMenuWidgetWrapper}`}
+      className={`${styles.SpacesMenuWidgetWrapper} ${showElement ? "" : `${styles.fullWrapper}`}`}
       style={{
         marginLeft: menuState ? "8px" : "-300px",
-        transition: "margin-left 0.35s ease-in-out",
       }}
     >
       <div className={styles.sideBarIcon} onClick={() => widgetState("spaces")}>
@@ -201,7 +200,7 @@ export default function SpacesMenuWidget({
       </div>
 
       <div
-        className={`${styles.SpacesMenu} ${showElement ? "" : `${styles.full}`}`}
+        className={`${styles.SpacesMenu}  ${showElement ? "" : `${styles.fullNav}`}`}
       >
         <div className={styles.spacesSideBarHeader}>
           <div className={styles.noodleButton}>Search 🔎</div>
