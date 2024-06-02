@@ -5,7 +5,6 @@ import SpacesNavIcon from "./SpacesNavIcon";
 import {
   AlarmClock,
   Calendar,
-  ImageIcon,
   Music,
   NotepadText,
   PenTool,
@@ -14,7 +13,7 @@ import {
   Sprout,
   Wind,
 } from "lucide-react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type SideNavProps = {
   widgetState: (arg0: string) => void;
@@ -27,6 +26,21 @@ export default function WidgetNav({
   states,
   showElement,
 }: SideNavProps) {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const resize = () => {
+      if (window.innerWidth < 620) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
+
+    resize();
+    window.addEventListener("resize", resize);
+  }, []);
+
   return (
     <div className={styles.WidgetNavWrapper}>
       <div
@@ -59,43 +73,47 @@ export default function WidgetNav({
             label="Tasks"
             currentState={widgetState}
           />
-          <WidgetButton selected={false} icon={<Calendar />} label="Cal" />
-          {/*<WidgetButton
+          {mobile ? null : (
+            <>
+              <WidgetButton selected={false} icon={<Calendar />} label="Cal" />
+              {/*<WidgetButton
             selected={states[6]}
             icon={<ImageIcon />}
             label="Spaces"
             currentState={widgetState}
           />*/}
-          <WidgetButton
-            selected={states[2]}
-            icon={<NotepadText />}
-            label="Notes"
-            currentState={widgetState}
-          />
-          <WidgetButton
-            selected={states[3]}
-            icon={<Music />}
-            label="Media"
-            currentState={widgetState}
-          />
-          <WidgetButton
-            selected={states[4]}
-            icon={<SlidersHorizontal />}
-            label="Sounds"
-            currentState={widgetState}
-          />
-          <WidgetButton
-            selected={states[5]}
-            icon={<Sparkles />}
-            label="Fortune"
-            currentState={widgetState}
-          />
-          <WidgetButton
-            selected={states[7]}
-            icon={<Wind />}
-            label="Breathe"
-            currentState={widgetState}
-          />
+              <WidgetButton
+                selected={states[2]}
+                icon={<NotepadText />}
+                label="Notes"
+                currentState={widgetState}
+              />
+              <WidgetButton
+                selected={states[3]}
+                icon={<Music />}
+                label="Media"
+                currentState={widgetState}
+              />
+              <WidgetButton
+                selected={states[4]}
+                icon={<SlidersHorizontal />}
+                label="Sounds"
+                currentState={widgetState}
+              />
+              <WidgetButton
+                selected={states[5]}
+                icon={<Sparkles />}
+                label="Fortune"
+                currentState={widgetState}
+              />
+              <WidgetButton
+                selected={states[7]}
+                icon={<Wind />}
+                label="Breathe"
+                currentState={widgetState}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>

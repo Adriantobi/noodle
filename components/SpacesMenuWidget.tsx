@@ -1,4 +1,3 @@
-import { usePathname } from "next/navigation";
 import styles from "../css/spacesmenuwidget.module.css";
 
 import ShuffleCategoryWrapper from "./ShuffleCategoryWrapper";
@@ -46,7 +45,6 @@ export default function SpacesMenuWidget({
 }: SpacesMenuWidgetProps) {
   //Close MenuSpaces
   const [copy, setCopy] = useState(false);
-  const pathName = usePathname();
   const [dateState, setDateState] = useState(new Date());
   useEffect(() => {
     setInterval(() => setDateState(new Date()), 1000);
@@ -181,7 +179,9 @@ export default function SpacesMenuWidget({
         </svg>
       </div>
 
-      <div className={`${styles.SpacesMenu} ${showElement ? '' : `${styles.full}`}`}>
+      <div
+        className={`${styles.SpacesMenu} ${showElement ? "" : `${styles.full}`}`}
+      >
         <div className={styles.spacesSideBarHeader}>
           <div className={styles.noodleButton}>Search 🔎</div>
           <span className={styles.currentTime}>
