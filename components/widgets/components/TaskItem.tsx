@@ -28,27 +28,22 @@ export default function TaskItem({
 
   useEffect(() => {
     if (checked === true) {
-      if ((taskItemNameRef.current as HTMLTextAreaElement).value === "") {
-        deleteTask();
-      } else if (
-        (taskItemNameRef.current as HTMLTextAreaElement).value !== ""
-      ) {
+      if ((taskItemNameRef.current as HTMLTextAreaElement).value !== "") {
         (taskItemNameRef.current as HTMLTextAreaElement).style.textDecoration =
           "line-through";
         (taskItemNameRef.current as HTMLTextAreaElement).style.color =
           "rgb(145, 148, 152)";
-        changeCheckedTasks("add");
       }
     } else if (checked === false) {
       (taskItemNameRef.current as HTMLTextAreaElement).style.textDecoration =
         "none";
       (taskItemNameRef.current as HTMLTextAreaElement).style.color =
         "rgb(255, 255, 255)";
-      changeCheckedTasks("remove");
     }
   }, [checked]);
 
   useEffect(() => {
+    const savedTasks = JSON.parse(localStorage.getItem("task_list") || "{}");
     const newTask = {
       ...savedTasks,
       [taskKey]: {
@@ -58,14 +53,14 @@ export default function TaskItem({
     };
 
     localStorage.setItem("task_list", JSON.stringify(newTask));
-  }, [taskText, checked, savedTasks, taskKey]);
+  }, [taskText, checked, taskKey]);
 
   const deleteTask = () => {
     removeTask(taskKey);
-    if (
-      checked === true &&
-      (taskItemNameRef.current as HTMLTextAreaElement).value === ""
-    ) {
+    const savedTasks = JSON.parse(localStorage.getItem("task_list") || "{}");
+    delete savedTasks[taskKey];
+    localStorage.setItem("task_list", JSON.stringify(savedTasks));
+    if (checked && taskItemNameRef.current?.value === "") {
       changeCheckedTasks("remove");
     }
   };
@@ -101,6 +96,7 @@ export default function TaskItem({
               deleteTask();
             } else {
               setChecked(!checked);
+              changeCheckedTasks(!checked ? "add" : "remove");
             }
           }}
         />

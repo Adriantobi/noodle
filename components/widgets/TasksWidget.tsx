@@ -34,10 +34,17 @@ export default function TasksWidget({
         .reverse();
       setTaskList(tasks);
 
+      const checkedTasks = tasks.filter((task) => task.isChecked);
+      setTotalCheckedTasks(checkedTasks.length);
+
       const maxTaskKey = Math.max(...tasks.map((task) => task.taskKey));
       setLastTaskKey(maxTaskKey);
     }
   }, []);
+
+  useEffect(() => {
+    console.log(totalCheckedTasks);
+  }, [totalCheckedTasks]);
 
   const addItem = () => {
     console.log(lastTaskKey);
