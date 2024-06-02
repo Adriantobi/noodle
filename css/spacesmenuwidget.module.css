@@ -31,7 +31,7 @@
 }
 
 .full {
-  height: calc(100% - 16px);
+  height: calc(100% - 16px) !important;
 }
 
 .spacesSideBarHeader {
@@ -377,4 +377,10 @@
 .noodleInfoButton svg {
   width: 18px;
   height: 18px;
+}
+
+@media (width < 620px) {
+  .SpacesMenu {
+    height: calc(100% - 144px);
+  }
 }
