@@ -185,6 +185,7 @@ export default function Interact({
           showFortune,
         ]}
         widgetState={setWidget}
+        mobile={mobile}
       />
       <BreatheWidget display={showBreathe} widgetState={setWidget} />
     </div>

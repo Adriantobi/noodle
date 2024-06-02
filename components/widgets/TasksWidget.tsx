@@ -55,7 +55,7 @@ export default function TasksWidget({
     delete newTask[taskKey];
 
     localStorage.setItem("task_list", JSON.stringify(newTask));
- 
+
     setTaskList((prevTaskList) =>
       prevTaskList.filter((task) => task.taskKey !== taskKey),
     );

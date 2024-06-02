@@ -10,11 +10,13 @@ import TasksWidget from "./widgets/TasksWidget";
 type WidgetCanvasProps = {
   states: boolean[];
   widgetState: (arg0: string) => void;
+  mobile: boolean;
 };
 
 export default function WidgetCanvas({
   states,
   widgetState,
+  mobile,
 }: WidgetCanvasProps) {
   return (
     <div className={styles.WidgetCanvas}>

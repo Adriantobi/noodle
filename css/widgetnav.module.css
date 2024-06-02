@@ -67,3 +67,9 @@
 .wrapperScroll:active::-webkit-scrollbar {
   display: flex;
 }
+
+@media (width < 620) {
+  .wrapperScroll:hover {
+    margin-top: 0px;
+  }
+}
