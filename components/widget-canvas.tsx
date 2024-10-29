@@ -16,7 +16,7 @@ export default function WidgetCanvas({
   widgetState,
 }: WidgetCanvasProps) {
   return (
-    <div className="flex fixed w-full bottom-0 h-[calc(100%-56px)]">
+    <div className="fixed bottom-0 flex h-[calc(100%-56px)] w-full">
       <FortuneWidget display={states[5]} widgetState={widgetState} />
       <NotesWidget display={states[2]} widgetState={widgetState} />
       <MediaWidget

@@ -18,11 +18,11 @@ function HeaderContent() {
   };
 
   return (
-    <div className="flex justify-center items-center gap-1">
+    <div className="flex items-center justify-center gap-1">
       <span className="flex">
-        <Sparkles className="w-[20px] h-[20px]" strokeWidth={1.5} />
+        <Sparkles className="h-[20px] w-[20px]" strokeWidth={1.5} />
       </span>
-      <span className="opacity-65 flex items-center text-center">{`Daily Fortune | ${dateToday()}`}</span>
+      <span className="flex items-center text-center opacity-65">{`Daily Fortune | ${dateToday()}`}</span>
     </div>
   );
 }
@@ -58,7 +58,7 @@ export default function FortuneWidget({ display, widgetState }: WidgetProps) {
         display={display}
       >
         <div className="flex px-[20px]">
-          <h3 className="flex m-0">{`"${quote}"`}</h3>
+          <h3 className="m-0 flex">{`"${quote}"`}</h3>
         </div>
       </Widget>
     </>

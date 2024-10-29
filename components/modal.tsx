@@ -18,25 +18,25 @@ export default function Modal({
   return (
     <div
       ref={ignoreRef}
-      className="bg-[#333333] bg-opacity-80 h-screen w-screen fixed top-0 left-0 z-[5000]"
+      className="fixed left-0 top-0 z-[5000] h-screen w-screen bg-[#333333] bg-opacity-80"
       onClick={() => setState(name)}
     >
       <div
-        className="bg-dark text-white flex flex-col justify-start h-fit max-w-[620px] fixed top-[10%] left-0 right-0 m-auto p-[20px] rounded-lg max-h-[80%] overflow-y-auto z-50 modal"
+        className="modal fixed left-0 right-0 top-[10%] z-50 m-auto flex h-fit max-h-[80%] max-w-[620px] flex-col justify-start overflow-y-auto rounded-lg bg-dark p-[20px] text-white"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex justify-between w-full px-[20px]">
+        <div className="flex w-full justify-between px-[20px]">
           <span className="w-[90%] text-[22px]">{title}</span>
           <span
-            className="cursor-pointer absolute top-0 right-[10px] flex justify-center items-center px-[5px] h-9"
+            className="absolute right-[10px] top-0 flex h-9 cursor-pointer items-center justify-center px-[5px]"
             onClick={() => {
               setState(name);
             }}
           >
-            <X className="w-[18px] h-[18px]" />
+            <X className="h-[18px] w-[18px]" />
           </span>
         </div>
-        <div className="flex flex-col justify-between my-[10px] px-5">
+        <div className="my-[10px] flex flex-col justify-between px-5">
           {children}
         </div>
       </div>

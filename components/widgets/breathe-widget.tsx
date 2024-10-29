@@ -6,11 +6,11 @@ export default function BreatheWidget({ display, widgetState }: WidgetProps) {
   return (
     <>
       <div
-        className="fixed top-0 overflow-hidden flex h-full w-full z-[1010] flex-col justify-center items-center bg-[#23282e]"
+        className="fixed top-0 z-[1010] flex h-full w-full flex-col items-center justify-center overflow-hidden bg-[#23282e]"
         style={{ display: display ? "flex" : "none" }}
       >
         <span
-          className="flex justify-center items-center cursor-pointer absolute top-[20px] right-[20px] py-[6px] px-[15px]"
+          className="absolute right-[20px] top-[20px] flex cursor-pointer items-center justify-center px-[15px] py-[6px]"
           onClick={() => widgetState("breathe")}
         >
           <X />
@@ -20,7 +20,7 @@ export default function BreatheWidget({ display, widgetState }: WidgetProps) {
           width={0}
           height={0}
           sizes="100vw"
-          className="max-w-[60%] max-h-[60%] w-auto h-auto"
+          className="h-auto max-h-[60%] w-auto max-w-[60%]"
           alt={"Breathe Gif"}
         />
       </div>

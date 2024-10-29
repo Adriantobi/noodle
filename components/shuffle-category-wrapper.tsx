@@ -71,23 +71,23 @@ export default function ShuffleCategoryWrapper({
         )}
       >
         {active && (
-          <div className="flex h-full w-full rounded-[10px] overflow-hidden absolute top-0 left-0 bg-[rgba(29,34,40,0.7)] hover:bg-[rgba(35,41,49,0.7)]">
+          <div className="absolute left-0 top-0 flex h-full w-full overflow-hidden rounded-[10px] bg-[rgba(29,34,40,0.7)] hover:bg-[rgba(35,41,49,0.7)]">
             <span
-              className="flex flex-grow justify-center items-center w-full h-full bg-transparent hover:bg-dark"
+              className="flex h-full w-full flex-grow items-center justify-center bg-transparent hover:bg-dark"
               onClick={() => setAllSpaceDetails(category, "decrement")}
             >
-              <ChevronLeft className="w-[18px] h-[18px]" />
+              <ChevronLeft className="h-[18px] w-[18px]" />
             </span>
             <span
-              className="flex flex-grow justify-center items-center w-full h-full bg-transparent hover:bg-dark"
+              className="flex h-full w-full flex-grow items-center justify-center bg-transparent hover:bg-dark"
               onClick={() => setAllSpaceDetails(category, "increment")}
             >
-              <ChevronRight className="w-[18px] h-[18px]" />
+              <ChevronRight className="h-[18px] w-[18px]" />
             </span>
           </div>
         )}
         <span
-          className="absolute whitespace-nowrap hidden bg-dark rounded-[4px] px-[8px] py-[4px] text-[14px] text-white shadow-[1px_1px_3px_#1e242b] h-[24px] items-center justify-center z-[2002] left-0 top-0 group-hover:flex"
+          className="absolute left-0 top-0 z-[2002] hidden h-[24px] items-center justify-center whitespace-nowrap rounded-[4px] bg-dark px-[8px] py-[4px] text-[14px] text-white shadow-[1px_1px_3px_#1e242b] group-hover:flex"
           ref={toolTipRef}
         >
           {category}
@@ -97,7 +97,7 @@ export default function ShuffleCategoryWrapper({
             width={0}
             height={0}
             sizes="100vw"
-            className="w-[20px] h-[20px] flex"
+            className="flex h-[20px] w-[20px]"
             src={src}
             alt={`An emoji for ${category.toUpperCase()} space category.`}
           />

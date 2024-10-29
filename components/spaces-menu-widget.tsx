@@ -46,7 +46,7 @@ type SocialLinkProps = {
 function SocialLink({ href, target, type, icon, onClick }: SocialLinkProps) {
   return href ? (
     <Link
-      className="flex gap-[10px] p-[10px] items-center hover:bg-[#515151]"
+      className="flex items-center gap-[10px] p-[10px] hover:bg-[#515151]"
       href={href}
       target={target}
       onClick={onClick}
@@ -76,7 +76,7 @@ export default function SpacesMenuWidget({
   const [muted, setMuted] = useState(true);
   const volumeSliderRef = useRef<HTMLInputElement>(null);
   const [favoritesOpen, setFavoritesOpen] = useState(false);
-  const [muteIcon, setMuteIcon] = useState(<VolumeX className="w-5 h-5" />);
+  const [muteIcon, setMuteIcon] = useState(<VolumeX className="h-5 w-5" />);
   const [leftBlur, setLeftBlur] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const moreRef = useRef<HTMLDivElement>(null);
@@ -116,7 +116,7 @@ export default function SpacesMenuWidget({
   useEffect(() => {
     setTempVol(volume);
     if (muted === true) {
-      setMuteIcon(<VolumeX className="w-5 h-5" />);
+      setMuteIcon(<VolumeX className="h-5 w-5" />);
       setVolume(0);
     } else {
       if (tempVol > 0) {
@@ -126,7 +126,7 @@ export default function SpacesMenuWidget({
       } else {
         setVolume(50);
       }
-      setMuteIcon(<Volume2 className="w-5 h-5" />);
+      setMuteIcon(<Volume2 className="h-5 w-5" />);
     }
   }, [muted]);
 
@@ -187,7 +187,7 @@ export default function SpacesMenuWidget({
       )}
     >
       <div
-        className="w-fit h-fit flex relative top-[50px] cursor-pointer"
+        className="relative top-[50px] flex h-fit w-fit cursor-pointer"
         onClick={() => widgetState("spaces")}
       >
         {menuState ? (
@@ -231,7 +231,7 @@ export default function SpacesMenuWidget({
           !showElement && "h-[calc(100%-16px)]",
         )}
       >
-        <div className="pt-[5px] flex">
+        <div className="flex pt-[5px]">
           <span
             className={cn(
               "py-[6px] px-[15px] text-sm cursor-pointer",
@@ -252,15 +252,15 @@ export default function SpacesMenuWidget({
           </span>
         </div>
 
-        <div className="p-[10px] !pb-0 flex w-full">
+        <div className="flex w-full p-[10px] !pb-0">
           <input
-            className="max-h-[30px] w-full flex justify-center rounded-[5px] bg-transparent outline-none border border-[#515151] p-2 text-white text-sm leading-4 placeholder:text-[#757575] disabled:cursor-not-allowed"
+            className="flex max-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-none placeholder:text-[#757575] disabled:cursor-not-allowed"
             type="text"
             placeholder="🔍 Search space"
           />
         </div>
 
-        <div className="relative mt-[10px] h-[51.71px] overflow-hidden border-b border-b-[#515151] grid flex-shrink-0">
+        <div className="relative mt-[10px] grid h-[51.71px] flex-shrink-0 overflow-hidden border-b border-b-[#515151]">
           <span
             className={cn(
               "justify-center absolute left-0 top-[6px] z-50 items-center w-[30px] h-[30px] cursor-pointer rounded-[5px] hover:bg-[#515151]/60",
@@ -269,13 +269,13 @@ export default function SpacesMenuWidget({
             )}
             onClick={() => carouselLeft()}
           >
-            <ArrowLeft className="w-[16px] h-[16px]" />
+            <ArrowLeft className="h-[16px] w-[16px]" />
           </span>
           <span
-            className="flex absolute right-0 z-50 justify-center top-[6px] items-center w-[30px] h-[30px] cursor-pointer rounded-[5px] hover:bg-[#515151]/60"
+            className="absolute right-0 top-[6px] z-50 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-[5px] hover:bg-[#515151]/60"
             onClick={() => carouselRight()}
           >
-            <ArrowRight className="w-[16px] h-[16px]" />
+            <ArrowRight className="h-[16px] w-[16px]" />
           </span>
           <div
             className={cn(
@@ -285,7 +285,7 @@ export default function SpacesMenuWidget({
             )}
           />
           <div
-            className="flex gap-[10px] h-full flex-col overflow-y-hidden overflow-x-scroll scroll-smooth px-2 pb-[9.71px] hover:pb-0 carousel"
+            className="carousel flex h-full flex-col gap-[10px] overflow-y-hidden overflow-x-scroll scroll-smooth px-2 pb-[9.71px] hover:pb-0"
             onScroll={() => {
               if (carouselRef.current) {
                 if (carouselRef.current.scrollLeft === 0) {
@@ -295,7 +295,7 @@ export default function SpacesMenuWidget({
             }}
             ref={carouselRef}
           >
-            <div className="w-fit flex transition h-full">
+            <div className="flex h-full w-fit transition">
               {categories.map((category) => (
                 <ShuffleCategoryWrapper
                   key={category.id}
@@ -309,15 +309,15 @@ export default function SpacesMenuWidget({
           </div>
         </div>
 
-        <div className="flex overflow-y-scroll p-[10px] no-scrollbar grow">
-          <div className="flex flex-wrap gap-[10px] w-full h-fit">
+        <div className="no-scrollbar flex grow overflow-y-scroll p-[10px]">
+          <div className="flex h-fit w-full flex-wrap gap-[10px]">
             {categorySpaces.map((space) => (
               <div
                 key={space.id}
-                className="flex gap-[5px] flex-col"
+                className="flex flex-col gap-[5px]"
                 onClick={() => changeCurrentSpace(space)}
               >
-                <span className="w-[155px] h-[80px] hover:scale-[1.025] rounded-lg overflow-hidden flex items-stretch relative justify-center cursor-pointer">
+                <span className="relative flex h-[80px] w-[155px] cursor-pointer items-stretch justify-center overflow-hidden rounded-lg hover:scale-[1.025]">
                   <Image
                     src={`https://img.youtube.com/vi/${space.link}/hqdefault.jpg`}
                     alt={space.title}
@@ -325,10 +325,10 @@ export default function SpacesMenuWidget({
                     width={0}
                     height={0}
                     sizes="100vw"
-                    className="w-full h-auto object-cover"
+                    className="h-auto w-full object-cover"
                   />
                   <span
-                    className="flex justify-center items-center absolute top-0 right-0 w-[30px] h-[30px]"
+                    className="absolute right-0 top-0 flex h-[30px] w-[30px] items-center justify-center"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -344,7 +344,7 @@ export default function SpacesMenuWidget({
                     />
                   </span>
                 </span>
-                <span className="text-xs text-nowrap overflow-ellipsis max-w-[155px] overflow-hidden">
+                <span className="max-w-[155px] overflow-hidden overflow-ellipsis text-nowrap text-xs">
                   {space.title}
                 </span>
               </div>
@@ -352,18 +352,18 @@ export default function SpacesMenuWidget({
           </div>
         </div>
 
-        <div className="w-full flex flex-col justify-between py-2 px-4 bg-dark rounded-b-lg shadow-space-info">
-          <div className="flex h-full w-full justify-between py-2 px-1">
+        <div className="flex w-full flex-col justify-between rounded-b-lg bg-dark px-4 py-2 shadow-space-info">
+          <div className="flex h-full w-full justify-between px-1 py-2">
             <div className="flex flex-col">
-              <span className="text-sm text-nowrap overflow-ellipsis max-w-[150px] overflow-hidden">
+              <span className="max-w-[150px] overflow-hidden overflow-ellipsis text-nowrap text-sm">
                 {space.title}
               </span>
-              <span className="flex gap-[5px] items-center relative">
-                <span className="text-xs bg-creator bg-clip-text text-transparent">
+              <span className="relative flex items-center gap-[5px]">
+                <span className="bg-creator bg-clip-text text-xs text-transparent">
                   @{creator.name}
                 </span>
                 <div
-                  className="cursor-pointer flex py-1 hover:bg-[#515151] rounded-[3px]"
+                  className="flex cursor-pointer rounded-[3px] py-1 hover:bg-[#515151]"
                   ref={moreRef}
                   onClick={() => setPopup(!popup)}
                 >
@@ -384,28 +384,28 @@ export default function SpacesMenuWidget({
                     href={creator.instagram as string}
                     target="_blank"
                     type="Instagram"
-                    icon={<Instagram className="w-4 h-4" />}
+                    icon={<Instagram className="h-4 w-4" />}
                     onClick={() => setPopup(false)}
                   />
                   <SocialLink
                     href={creator.twitter as string}
                     target="_blank"
                     type="Twitter"
-                    icon={<Twitter className="w-4 h-4" />}
+                    icon={<Twitter className="h-4 w-4" />}
                     onClick={() => setPopup(false)}
                   />
                   <SocialLink
                     href={creator.website as string}
                     target="_blank"
                     type="Website"
-                    icon={<LinkIcon className="w-4 h-4" />}
+                    icon={<LinkIcon className="h-4 w-4" />}
                     onClick={() => setPopup(false)}
                   />
                   <SocialLink
                     href={creator.youtube as string}
                     target="_blank"
                     type="Youtube"
-                    icon={<Youtube className="w-4 h-4" />}
+                    icon={<Youtube className="h-4 w-4" />}
                     onClick={() => setPopup(false)}
                   />
                 </div>
@@ -413,7 +413,7 @@ export default function SpacesMenuWidget({
             </div>
 
             <span
-              className="py-[6px] px-[10px] min-h-9 min-w-9 cursor-pointer"
+              className="min-h-9 min-w-9 cursor-pointer px-[10px] py-[6px]"
               onClick={() => saveSpace(space)}
             >
               <Heart
@@ -426,9 +426,9 @@ export default function SpacesMenuWidget({
               />
             </span>
           </div>
-          <div className="pt-[2px] pl-[6px] pb-[14px] flex w-full items-center">
+          <div className="flex w-full items-center pb-[14px] pl-[6px] pt-[2px]">
             <div
-              className="flex pl-1 cursor-pointer"
+              className="flex cursor-pointer pl-1"
               onClick={() => setMuted(!muted)}
             >
               {muteIcon}
@@ -438,7 +438,7 @@ export default function SpacesMenuWidget({
               min="0"
               max="100"
               ref={volumeSliderRef}
-              className="w-full volume-slider"
+              className="volume-slider w-full"
               value={volume}
               onInput={(e) =>
                 setVolume(Number((e.target as HTMLInputElement).value))

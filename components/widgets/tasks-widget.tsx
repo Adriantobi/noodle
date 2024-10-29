@@ -86,13 +86,13 @@ export default function TasksWidget({
         defaultWidth={defaultWidth}
       >
         <div
-          className="flex text-white gap-[5px] text-sm leading-4 rounded-lg py-[6px] px-[15px] mt-[10px] mb-1 mx-5 cursor-pointer font-extralight hover:bg-[#515151]"
+          className="mx-5 mb-1 mt-[10px] flex cursor-pointer gap-[5px] rounded-lg px-[15px] py-[6px] text-sm font-extralight leading-4 text-white hover:bg-[#515151]"
           onClick={addItem}
         >
-          <Plus className="w-[14px] h-[14px]" />
+          <Plus className="h-[14px] w-[14px]" />
           <span>Add task</span>
         </div>
-        <div className="flex flex-col overflow-scroll h-[calc(100%-60px)] scrollbar-gutter-stable tasks-list">
+        <div className="scrollbar-gutter-stable tasks-list flex h-[calc(100%-60px)] flex-col overflow-scroll">
           {taskList.map((task) =>
             task.inputText || task.isChecked ? (
               <TaskItem
@@ -113,16 +113,16 @@ export default function TasksWidget({
             ),
           )}
         </div>
-        <div className="flex py-1 px-3 absolute justify-center items-center bg-dark bottom-3 w-full gap-[10px]">
+        <div className="absolute bottom-3 flex w-full items-center justify-center gap-[10px] bg-dark px-3 py-1">
           <div className="h-[10px] w-full rounded-[5px] bg-[#767676]">
             <div
-              className="rounded-[5px] max-w-full h-[10px] bg-[#B6B6B6]"
+              className="h-[10px] max-w-full rounded-[5px] bg-[#B6B6B6]"
               style={{
                 width: `${(totalCheckedTasks / taskList.length) * 100}%`,
               }}
             />
           </div>
-          <span className="text-xs flex whitespace-nowrap">{`${totalCheckedTasks} / ${taskList.length}`}</span>
+          <span className="flex whitespace-nowrap text-xs">{`${totalCheckedTasks} / ${taskList.length}`}</span>
         </div>
       </Widget>
     </>

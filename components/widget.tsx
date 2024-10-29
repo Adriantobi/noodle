@@ -197,18 +197,18 @@ export default function Widget({
           });
         }}
       >
-        <div className="flex justify-center items-center text-center my-2 mx-[22px]">
+        <div className="mx-[22px] my-2 flex items-center justify-center text-center">
           {header}
         </div>
         <div
-          className="flex cursor-pointer py-[6px] px-[10px]"
+          className="flex cursor-pointer px-[10px] py-[6px]"
           onClick={() => widgetState(title ? title.toLowerCase() : "")}
         >
-          <Minus className="w-[18px] h-[18px]" />
+          <Minus className="h-[18px] w-[18px]" />
         </div>
       </div>
 
-      <div className="flex flex-col overflow-auto text-white h-full">
+      <div className="flex h-full flex-col overflow-auto text-white">
         {children}
       </div>
 
@@ -223,7 +223,7 @@ export default function Widget({
             width="16"
             height="16"
             fill="none"
-            className="resize-widget-corner absolute fill-white w-fit bottom-0 right-0 z-[1] pointer-events-none"
+            className="resize-widget-corner pointer-events-none absolute bottom-0 right-0 z-[1] w-fit fill-white"
           >
             <path d="M5.333 11.333a.667.667 0 100-1.333.667.667 0 000 1.333zM8 11.333A.667.667 0 108 10a.667.667 0 000 1.333zM8 8.666a.667.667 0 100-1.333.667.667 0 000 1.333zM10.667 6a.667.667 0 100-1.333.667.667 0 000 1.333zM10.667 11.333a.667.667 0 100-1.333.667.667 0 000 1.333zM10.667 8.666a.667.667 0 100-1.333.667.667 0 000 1.333z"></path>
           </svg>

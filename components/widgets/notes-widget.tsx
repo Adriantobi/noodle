@@ -10,9 +10,9 @@ export default function NotesWidget({ display, widgetState }: WidgetProps) {
         widgetState={widgetState}
         display={display}
       >
-        <div className="w-full h-full flex">
+        <div className="flex h-full w-full">
           <textarea
-            className="flex w-full h-[calc(100%-24px)] text-sm bg-dark text-white outline-none no-underline border-none cursor-auto overflow-y-visible resize-none notes-input pt-4 px-[20px] min-h-[94px] placeholder:text-[#757575]"
+            className="notes-input flex h-[calc(100%-24px)] min-h-[94px] w-full cursor-auto resize-none overflow-y-visible border-none bg-dark px-[20px] pt-4 text-sm text-white no-underline outline-none placeholder:text-[#757575]"
             placeholder="Type your notes here..."
           />
         </div>

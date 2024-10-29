@@ -142,7 +142,7 @@ export default function Interact({
   };
 
   return (
-    <div className="relative z-50 h-full box-border">
+    <div className="relative z-50 box-border h-full">
       <TopNav
         widgetState={setWidget}
         showElement={showElement}
@@ -152,7 +152,7 @@ export default function Interact({
         setDisplayTimeOut={setDisplayTimeOut}
         mobile={mobile}
       />
-      <div className="flex relative h-full z-50 w-fit">
+      <div className="relative z-50 flex h-full w-fit">
         <WidgetNav
           widgetState={setWidget}
           states={[

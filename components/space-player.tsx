@@ -9,7 +9,7 @@ type SpacePlayerProps = {
 
 export default function SpacePlayer({ source, vol }: SpacePlayerProps) {
   return (
-    <div className="absolute flex pb-[56.25%] pt-[25px] w-[200%] left-[-100%] pointer-events-none space-player">
+    <div className="space-player pointer-events-none absolute left-[-100%] flex w-[200%] pb-[56.25%] pt-[25px]">
       <ReactPlayer
         url={`https://youtube.com/watch?v=${source}`}
         loop={true}

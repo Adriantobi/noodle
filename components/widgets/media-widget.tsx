@@ -58,7 +58,7 @@ export default function MediaWidget({
             width: "100%",
             backgroundColor: "rgb(35, 42, 49)",
           }}
-          className="h-[calc(100%-38px)] spotify-embed"
+          className="spotify-embed h-[calc(100%-38px)]"
           src={`https://open.spotify.com/embed/${playlist}?utm_source=generator`}
           width="100%"
           allowFullScreen
@@ -66,22 +66,22 @@ export default function MediaWidget({
           loading="lazy"
         ></iframe>
 
-        <div className="flex justify-self-end absolute bottom-0 w-full items-center gap-[10px] h-[38px]">
-          <div className="flex w-[calc(100%-100px)] justify-center p-[2px] m-[6px]">
+        <div className="absolute bottom-0 flex h-[38px] w-full items-center gap-[10px] justify-self-end">
+          <div className="m-[6px] flex w-[calc(100%-100px)] justify-center p-[2px]">
             <input
               type="text"
-              className="bg-transparent no-underline text-white min-w-[235px] w-[calc(100%-24px)] text-sm pt-[2px] px-[10px] rounded-lg border-[1.5px] border-[#515151] leading-[25px]"
+              className="w-[calc(100%-24px)] min-w-[235px] rounded-lg border-[1.5px] border-[#515151] bg-transparent px-[10px] pt-[2px] text-sm leading-[25px] text-white no-underline"
               ref={inputRef}
               placeholder="Enter Spotify URL here"
               data-tip="Paste a link to YouTube video/playlist, or a Spotify or Apple Music playlist, album, or song, then press 'enter'"
               onKeyDown={handleKeyDown}
             />
           </div>
-          <div className="text-sm cursor-pointer" onClick={handleSubmit}>
+          <div className="cursor-pointer text-sm" onClick={handleSubmit}>
             Save
           </div>
           <div
-            className="cursor-pointer flex"
+            className="flex cursor-pointer"
             onClick={() => {
               setPlaylist("playlist/3BagbZs5aHeJke8kQqyomJ");
               localStorage.setItem(
@@ -90,7 +90,7 @@ export default function MediaWidget({
               );
             }}
           >
-            <RotateCw className="w-[18px] h-[18px]" />
+            <RotateCw className="h-[18px] w-[18px]" />
           </div>
         </div>
       </Widget>

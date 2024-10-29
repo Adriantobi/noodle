@@ -26,44 +26,44 @@ export default function DropMenu({
     >
       {status === "authenticated" ? (
         <span
-          className="border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]"
+          className="flex h-9 cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]"
           onClick={() => modalStates("account")}
         >
-          <div className="px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full">
-            <User className="w-4 h-4" />
+          <div className="flex h-full w-full items-center gap-[5px] px-[5px] text-white no-underline">
+            <User className="h-4 w-4" />
             My Account
           </div>
         </span>
       ) : (
         <span
-          className="border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]"
+          className="flex h-9 cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]"
           onClick={() => signIn("google")}
         >
-          <div className="px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full">
+          <div className="flex h-full w-full items-center gap-[5px] px-[5px] text-white no-underline">
             Signup/Login
           </div>
         </span>
       )}
       <span
-        className="border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]"
+        className="flex h-9 cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]"
         onClick={() => modalStates("appearance")}
       >
-        <div className="px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full">
-          <Wrench className="w-4 h-4" />
+        <div className="flex h-full w-full items-center gap-[5px] px-[5px] text-white no-underline">
+          <Wrench className="h-4 w-4" />
           Appearance
         </div>
       </span>
       <span
-        className="border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]"
+        className="flex h-9 cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]"
         onClick={() => modalStates("stats")}
       >
-        <div className="px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full">
+        <div className="flex h-full w-full items-center gap-[5px] px-[5px] text-white no-underline">
           Your Stats
         </div>
       </span>
-      <span className="border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]">
+      <span className="flex h-9 cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]">
         <Link
-          className="px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full"
+          className="flex h-full w-full items-center gap-[5px] px-[5px] text-white no-underline"
           href="https://discord.com/invite/sfEkz5aZW7"
           target="_blank"
         >
@@ -72,7 +72,7 @@ export default function DropMenu({
             viewBox="0 0 512 512"
             xmlns="http://www.w3.org/2000/svg"
             stroke="#5865f2"
-            className="w-4 h-4"
+            className="h-4 w-4"
           >
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
             <g
@@ -89,72 +89,72 @@ export default function DropMenu({
           Noodle Discord
         </Link>
       </span>
-      <span className="border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]">
+      <span className="flex h-9 cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]">
         <Link
-          className="px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full"
+          className="flex h-full w-full items-center gap-[5px] px-[5px] text-white no-underline"
           href="https://github.com/Adriantobi/noodle"
           target="_blank"
         >
           Changelog
         </Link>
       </span>
-      <span className="border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]">
-        <div className="px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full">
+      <span className="flex h-9 cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]">
+        <div className="flex h-full w-full items-center gap-[5px] px-[5px] text-white no-underline">
           Feedback
         </div>
       </span>
-      <span className="border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]">
-        <div className="px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full">
+      <span className="flex h-9 cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]">
+        <div className="flex h-full w-full items-center gap-[5px] px-[5px] text-white no-underline">
           Help
         </div>
       </span>
       <div className="flex justify-between">
-        <span className="w-full border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]">
-          <div className="justify-center px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full">
+        <span className="flex h-9 w-full cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]">
+          <div className="flex h-full w-full items-center justify-center gap-[5px] px-[5px] text-white no-underline">
             Privacy
           </div>
         </span>
-        <span className="before:content-[''] before:flex before:bottom-0 before:right-0 before:h-full before:w-[1px] before:border-l before:border-l-[#515151]" />
-        <span className="w-full border-b border-b-[#515151] flex h-9 cursor-pointer items-center px-[10px] py-[6px]">
-          <div className="justify-center px-[5px] flex items-center no-underline gap-[5px] text-white w-full h-full">
+        <span className="before:bottom-0 before:right-0 before:flex before:h-full before:w-[1px] before:border-l before:border-l-[#515151] before:content-['']" />
+        <span className="flex h-9 w-full cursor-pointer items-center border-b border-b-[#515151] px-[10px] py-[6px]">
+          <div className="flex h-full w-full items-center justify-center gap-[5px] px-[5px] text-white no-underline">
             Terms
           </div>
         </span>
       </div>
-      <span className="flex h-9 cursor-pointer items-center px-[10px] py-[6px] justify-around">
-        <div className="flex justify-center items-center">
+      <span className="flex h-9 cursor-pointer items-center justify-around px-[10px] py-[6px]">
+        <div className="flex items-center justify-center">
           <Link
-            className="flex justify-center items-center"
+            className="flex items-center justify-center"
             href="https://www.instagram.com/adrian.td"
             target="_blank"
           >
-            <Instagram className="w-4 h-4" />
+            <Instagram className="h-4 w-4" />
           </Link>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <Link
-            className="flex justify-center items-center"
+            className="flex items-center justify-center"
             href="https://www.twitter.com/adriantdoav"
             target="_blank"
           >
-            <Twitter className="w-4 h-4" />
+            <Twitter className="h-4 w-4" />
           </Link>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <Link
-            className="flex justify-center items-center"
+            className="flex items-center justify-center"
             href="https://www.adriantd.com"
             target="_blank"
           >
-            <LinkIcon className="w-4 h-4" />
+            <LinkIcon className="h-4 w-4" />
           </Link>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <Link
-            className="flex justify-center items-center"
+            className="flex items-center justify-center"
             href="mailto:talktotobi.a@gmail.com"
           >
-            <Mail className="w-4 h-4" />
+            <Mail className="h-4 w-4" />
           </Link>
         </div>
       </span>

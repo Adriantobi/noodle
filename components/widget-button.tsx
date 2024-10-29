@@ -26,7 +26,7 @@ export default function WidgetButton({
       )}
       onClick={handleClick}
     >
-      <span className="m-0 p-0 h-5">{icon}</span>
+      <span className="m-0 h-5 p-0">{icon}</span>
       <span className={cn("select-none text-xs", selected && "text-[#e39685]")}>
         {label}
       </span>

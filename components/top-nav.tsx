@@ -58,22 +58,22 @@ function Appearance({
         >
           <div className="flex flex-col gap-5">
             <div className="flex flex-col">
-              <span className="text-xs text-[#919498] py-[6px]">THEME</span>
+              <span className="py-[6px] text-xs text-[#919498]">THEME</span>
               <div className="flex flex-col gap-[6px]">
-                <div className="my-[6px] text-sm flex justify-between items-center">
+                <div className="my-[6px] flex items-center justify-between text-sm">
                   <span className="w-[70%]">Dark Mode</span>
-                  <span className="py-[6px] px-[15px] border border-[#515151] rounded-[5px]">
-                    <Moon className="w-5 h-5" />
+                  <span className="rounded-[5px] border border-[#515151] px-[15px] py-[6px]">
+                    <Moon className="h-5 w-5" />
                   </span>
                 </div>
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xs text-[#919498] py-[6px]">
+              <span className="py-[6px] text-xs text-[#919498]">
                 FOCUS MODE
               </span>
               <div className="flex flex-col gap-[6px]">
-                <div className="my-[6px] text-sm flex justify-between items-center">
+                <div className="my-[6px] flex items-center justify-between text-sm">
                   <span className="w-[70%]">Hide Elements</span>
                   <input
                     className={cn(
@@ -88,7 +88,7 @@ function Appearance({
                     }
                   />
                 </div>
-                <div className="my-[6px] text-sm flex justify-between items-center">
+                <div className="my-[6px] flex items-center justify-between text-sm">
                   <span className="w-[70%]">Hide After (seconds)</span>
                   <input
                     className={cn(
@@ -129,7 +129,7 @@ function Account({ state, setState, ignoreRef }: TopNavItemProps) {
           name={"account"}
         >
           <div className="flex flex-col gap-5">
-            <div className="flex rounded-full overflow-hidden w-[45px] h-[45px] mt-[10px]">
+            <div className="mt-[10px] flex h-[45px] w-[45px] overflow-hidden rounded-full">
               <Image
                 width={45}
                 height={45}
@@ -142,7 +142,7 @@ function Account({ state, setState, ignoreRef }: TopNavItemProps) {
               <span>Email:</span>
               <span>
                 <input
-                  className="min-h-[30px] w-full flex justify-center rounded-[5px] bg-transparent outline-none border border-[#515151] p-2 text-white text-sm leading-4 placeholder:text-white disabled:cursor-not-allowed"
+                  className="flex min-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-none placeholder:text-white disabled:cursor-not-allowed"
                   type="text"
                   placeholder={data?.user?.email as string}
                   disabled
@@ -153,7 +153,7 @@ function Account({ state, setState, ignoreRef }: TopNavItemProps) {
               <span>Name:</span>
               <span>
                 <input
-                  className="min-h-[30px] w-full flex justify-center rounded-[5px] bg-transparent outline-none border border-[#515151] p-2 text-white text-sm leading-4 placeholder:text-white disabled:cursor-not-allowed"
+                  className="flex min-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-none placeholder:text-white disabled:cursor-not-allowed"
                   type="text"
                   defaultValue={data?.user?.name as string}
                 />
@@ -162,7 +162,7 @@ function Account({ state, setState, ignoreRef }: TopNavItemProps) {
 
             <div className="flex py-[6px]">
               <span
-                className="text-sm cursor-pointer text-[#919498]"
+                className="cursor-pointer text-sm text-[#919498]"
                 onClick={() => signOut()}
               >
                 Log out
@@ -186,7 +186,7 @@ export default function TopNav({
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
   const [screenTypeIcon, setScreenTypeIcon] = useState(
-    <Maximize2 className="w-[18px] h-[18px]" />,
+    <Maximize2 className="h-[18px] w-[18px]" />,
   );
   const userIconRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -229,11 +229,11 @@ export default function TopNav({
 
   useEffect(() => {
     if (fullScreen) {
-      setScreenTypeIcon(<Minimize2 className="w-[18px] h-[18px]" />);
+      setScreenTypeIcon(<Minimize2 className="h-[18px] w-[18px]" />);
       document.body.requestFullscreen();
     } else {
       if (document.fullscreenElement) {
-        setScreenTypeIcon(<Maximize2 className="w-[18px] h-[18px]" />);
+        setScreenTypeIcon(<Maximize2 className="h-[18px] w-[18px]" />);
         document.exitFullscreen();
       }
     }
@@ -284,19 +284,19 @@ export default function TopNav({
           !showElement && "-mt-[48px]",
         )}
       >
-        <div className="flex justify-between gap-[6px] bg-dark h-full rounded-[5px] items-center px-[6px] noodle-info-section">
+        <div className="noodle-info-section flex h-full items-center justify-between gap-[6px] rounded-[5px] bg-dark px-[6px]">
           <div
             className={cn(
               "bg-transparent flex items-center gap-2 h-full",
               "py-1 px-[9px] text-xs rounded-[5px] hover:bg-[#515151] flex justify-between items-center cursor-pointer text-nowrap h-[calc(100%-12px)]",
             )}
           >
-            <Headphones className="w-[18px] h-[18px]" />
+            <Headphones className="h-[18px] w-[18px]" />
             {mobile ? "" : "Focus"}
-            <ChevronDown className="w-[16px] h-[18px]" />
+            <ChevronDown className="h-[18px] w-[16px]" />
           </div>
 
-          <span className="before:flex before:content-[''] before:bottom-0 before:right-0 before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151]" />
+          <span className="before:bottom-0 before:right-0 before:flex before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151] before:content-['']" />
 
           <div
             className={cn(
@@ -308,7 +308,7 @@ export default function TopNav({
             {mobile ? "" : "4"} 🔥
           </div>
 
-          <span className="before:flex before:content-[''] before:bottom-0 before:right-0 before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151]" />
+          <span className="before:bottom-0 before:right-0 before:flex before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151] before:content-['']" />
 
           <div
             className={cn(
@@ -330,10 +330,10 @@ export default function TopNav({
           </div>
         </div>
 
-        <div className="flex items-center gap-2 h-full">
-          <div className="flex justify-between gap-[6px] bg-dark h-full rounded-[5px] items-center px-[6px] room-info">
+        <div className="flex h-full items-center gap-2">
+          <div className="room-info flex h-full items-center justify-between gap-[6px] rounded-[5px] bg-dark px-[6px]">
             {status === "authenticated" ? (
-              <div className="flex items-center justify-center rounded-full overflow-hidden">
+              <div className="flex items-center justify-center overflow-hidden rounded-full">
                 <Image
                   width={30}
                   height={30}
@@ -349,10 +349,10 @@ export default function TopNav({
                 "bg-transparent rounded-[3px] p-[6px]",
               )}
             >
-              <Video className="w-[18px] h-[18px]" />
+              <Video className="h-[18px] w-[18px]" />
             </div>
 
-            <span className="before:flex before:content-[''] before:bottom-0 before:right-0 before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151]" />
+            <span className="before:bottom-0 before:right-0 before:flex before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151] before:content-['']" />
 
             <div
               className={cn(
@@ -362,10 +362,10 @@ export default function TopNav({
               onClick={() => setModals("room")}
             >
               {status === "authenticated" ? `${data?.user?.name}'s` : "My"} Room
-              <ChevronDown className="w-[18px] h-[18px]" />
+              <ChevronDown className="h-[18px] w-[18px]" />
             </div>
 
-            <span className="before:flex before:content-[''] before:bottom-0 before:right-0 before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151]" />
+            <span className="before:bottom-0 before:right-0 before:flex before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151] before:content-['']" />
 
             <div
               className={cn(
@@ -377,7 +377,7 @@ export default function TopNav({
             </div>
           </div>
 
-          <div className="flex justify-between gap-[6px] bg-dark h-full rounded-[5px] items-center px-[6px]">
+          <div className="flex h-full items-center justify-between gap-[6px] rounded-[5px] bg-dark px-[6px]">
             {mobile ? null : (
               <div
                 className={cn(
@@ -385,7 +385,7 @@ export default function TopNav({
                   "bg-transparent rounded-[3px] p-[6px]",
                 )}
               >
-                <Volume2 className="w-[18px] h-[18px]" />
+                <Volume2 className="h-[18px] w-[18px]" />
               </div>
             )}
 
@@ -395,7 +395,7 @@ export default function TopNav({
                 "bg-transparent rounded-[3px] p-[6px]",
               )}
             >
-              <Megaphone className="w-[18px] h-[18px]" />
+              <Megaphone className="h-[18px] w-[18px]" />
             </div>
 
             <div
@@ -404,7 +404,7 @@ export default function TopNav({
                 "bg-transparent rounded-[3px] p-[6px]",
               )}
             >
-              <HelpCircle className="w-[18px] h-[18px]" />
+              <HelpCircle className="h-[18px] w-[18px]" />
             </div>
 
             <div
@@ -417,7 +417,7 @@ export default function TopNav({
               {screenTypeIcon}
             </div>
 
-            <span className="before:flex before:content-[''] before:bottom-0 before:right-0 before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151]" />
+            <span className="before:bottom-0 before:right-0 before:flex before:h-[25px] before:w-[1px] before:border-l before:border-l-[#515151] before:content-['']" />
 
             <div
               ref={userIconRef}
@@ -427,7 +427,7 @@ export default function TopNav({
               )}
               onClick={() => setDropDownOpen(!dropDownOpen)}
             >
-              <User className="w-[18px] h-[18px]" />
+              <User className="h-[18px] w-[18px]" />
               <ChevronDown
                 className={cn(
                   dropDownOpen && "-rotate-180",
