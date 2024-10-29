@@ -20,7 +20,7 @@ function HeaderContent() {
   return (
     <div className="flex justify-center items-center gap-1">
       <span className="flex">
-        <Sparkles className="w-[20px] h-[20px]" />
+        <Sparkles className="w-[20px] h-[20px]" strokeWidth={1.5} />
       </span>
       <span className="opacity-65 flex items-center text-center">{`Daily Fortune | ${dateToday()}`}</span>
     </div>
