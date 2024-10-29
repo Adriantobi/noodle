@@ -97,6 +97,7 @@ export default function Frame({ spaces, categories, creators }: FrameProps) {
     categoryName: string,
     type: "increment" | "decrement" = "increment",
   ) => {
+    console.log(currentSpaceId, spaceQueryParam);
     setCurrentCategory(categoryName);
     setCurrentCategorySpaces(categorySpaces(categoryName));
     setCurrentSpaceId((prevId) => {

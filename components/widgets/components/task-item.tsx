@@ -20,7 +20,7 @@ export default function TaskItem({
   const [checked, setChecked] = useState<boolean | null>(
     isChecked ? isChecked : null,
   );
-  const [more, setMore] = useState(false);
+  // const [more, setMore] = useState(false);
   const [taskText, setTaskText] = useState(inputText ? inputText : "");
   const taskItemRef = useRef<HTMLTextAreaElement>(null);
 
@@ -129,7 +129,7 @@ export default function TaskItem({
         </span>
       </div>
 
-      {more ? (
+      {/*more ? (
         <div className="flex justify-center items-center flex-col fixed -right-[85px] top-[50px] bg-dark w-fit min-w-[250px] h-auto rounded-[5px] shadow-more overflow-hidden z-[1003]">
           <div className="text-sm flex items-center w-full p-[10px] text-white cursor-pointer hover:bg-dark">
             Edit
@@ -141,7 +141,7 @@ export default function TaskItem({
             Delete
           </div>
         </div>
-      ) : null}
+      ) : null*/}
     </div>
   );
 }
