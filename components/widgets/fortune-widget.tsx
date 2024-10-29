@@ -1,4 +1,3 @@
-import styles from "../../css/widgets/fortunewidget.module.css";
 import { Sparkles } from "lucide-react";
 import Widget, { WidgetProps } from "../widget";
 
