@@ -196,6 +196,8 @@ export default function Widget({
               ).getBoundingClientRect().top,
           });
         }}
+        onTouchEnd={() => setDrag(false)}
+        onMouseUp={() => setDrag(false)}
       >
         <div className="mx-[22px] my-2 flex items-center justify-center text-center">
           {header}
