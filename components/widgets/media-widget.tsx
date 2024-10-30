@@ -8,6 +8,7 @@ export default function MediaWidget({
   defaultHeight,
   defaultWidth,
 }: WidgetProps) {
+  const defaultPlaylist = "playlist/5DN4WqG6OPggVLT17TyoZs";
   const [playlist, setPlaylist] = useState<string | null>();
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -15,7 +16,7 @@ export default function MediaWidget({
     setPlaylist(
       localStorage.getItem("playlist") !== null
         ? localStorage.getItem("playlist")
-        : "playlist/3BagbZs5aHeJke8kQqyomJ",
+        : defaultPlaylist,
     );
   }, []);
 
@@ -83,11 +84,8 @@ export default function MediaWidget({
           <div
             className="flex cursor-pointer"
             onClick={() => {
-              setPlaylist("playlist/3BagbZs5aHeJke8kQqyomJ");
-              localStorage.setItem(
-                "playlist",
-                "playlist/3BagbZs5aHeJke8kQqyomJ",
-              );
+              setPlaylist(defaultPlaylist);
+              localStorage.setItem("playlist", defaultPlaylist);
             }}
           >
             <RotateCw className="h-[18px] w-[18px]" />

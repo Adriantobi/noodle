@@ -357,9 +357,9 @@ export default function SpacesMenuWidget({
           </>
         ) : (
           <>
-            <div className="bg-dark p-[10px] w-full">
+            <div className="w-full bg-dark p-[10px]">
               <div
-                className="w-auto rounded-[5px] flex items-center justify-center bg-white px-[15px] py-[6px] cursor-pointer gap-[5px]"
+                className="flex w-auto cursor-pointer items-center justify-center gap-[5px] rounded-[5px] bg-white px-[15px] py-[6px]"
                 onClick={() => {
                   const spacesArray = Object.values(savedSpaces);
                   const randomIndex = Math.floor(
@@ -373,7 +373,7 @@ export default function SpacesMenuWidget({
               </div>
             </div>
 
-            <div className="no-scrollbar flex grow overflow-y-scroll p-[10px] !pt-0 w-[340px] max-w-[340px]">
+            <div className="no-scrollbar flex w-[340px] max-w-[340px] grow overflow-y-scroll p-[10px] !pt-0">
               <div className="flex h-fit w-full flex-wrap gap-[10px]">
                 {Object.values(savedSpaces).map((space) => (
                   <div
