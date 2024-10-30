@@ -252,105 +252,154 @@ export default function SpacesMenuWidget({
           </span>
         </div>
 
-        <div className="flex w-full p-[10px] !pb-0">
-          <input
-            className="flex max-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-none placeholder:text-[#757575] disabled:cursor-not-allowed"
-            type="text"
-            placeholder="🔍 Search space"
-          />
-        </div>
+        {!favoritesOpen ? (
+          <>
+            <div className="flex w-full p-[10px] !pb-0">
+              <input
+                className="flex max-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-none placeholder:text-[#757575] disabled:cursor-not-allowed"
+                type="text"
+                placeholder="🔍 Search space"
+              />
+            </div>
 
-        <div className="relative mt-[10px] grid h-[51.71px] flex-shrink-0 overflow-hidden border-b border-b-[#515151]">
-          <span
-            className={cn(
-              "justify-center absolute left-0 top-[6px] z-50 items-center w-[30px] h-[30px] cursor-pointer rounded-[5px] hover:bg-[#515151]/60",
-              leftBlur && "flex",
-              !leftBlur && "hidden",
-            )}
-            onClick={() => carouselLeft()}
-          >
-            <ArrowLeft className="h-[16px] w-[16px]" />
-          </span>
-          <span
-            className="absolute right-0 top-[6px] z-50 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-[5px] hover:bg-[#515151]/60"
-            onClick={() => carouselRight()}
-          >
-            <ArrowRight className="h-[16px] w-[16px]" />
-          </span>
-          <div
-            className={cn(
-              "absolute inset-0 bg-gradient-to-r via-transparent to-dark from-[2%] to-[98%] scale-150 pointer-events-none z-10",
-              !leftBlur && "from-transparent",
-              leftBlur && "from-dark",
-            )}
-          />
-          <div
-            className="carousel flex h-full flex-col gap-[10px] overflow-y-hidden overflow-x-scroll scroll-smooth px-2 pb-[9.71px] hover:pb-0"
-            onScroll={() => {
-              if (carouselRef.current) {
-                if (carouselRef.current.scrollLeft === 0) {
-                  setLeftBlur(false);
-                } else setLeftBlur(true);
-              }
-            }}
-            ref={carouselRef}
-          >
-            <div className="flex h-full w-fit transition">
-              {categories.map((category) => (
-                <ShuffleCategoryWrapper
-                  key={category.id}
-                  active={category.name === space.categoryName}
-                  category={category.name}
-                  setAllSpaceDetails={setAllSpaceDetails}
-                  src={category.icon}
-                />
-              ))}
+            <div className="relative mt-[10px] grid h-[51.71px] flex-shrink-0 overflow-hidden border-b border-b-[#515151]">
+              <span
+                className={cn(
+                  "justify-center absolute left-0 top-[6px] z-50 items-center w-[30px] h-[30px] cursor-pointer rounded-[5px] hover:bg-[#515151]/60",
+                  leftBlur && "flex",
+                  !leftBlur && "hidden",
+                )}
+                onClick={() => carouselLeft()}
+              >
+                <ArrowLeft className="h-[16px] w-[16px]" />
+              </span>
+              <span
+                className="absolute right-0 top-[6px] z-50 flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-[5px] hover:bg-[#515151]/60"
+                onClick={() => carouselRight()}
+              >
+                <ArrowRight className="h-[16px] w-[16px]" />
+              </span>
+              <div
+                className={cn(
+                  "absolute inset-0 bg-gradient-to-r via-transparent to-dark from-[2%] to-[98%] scale-150 pointer-events-none z-10",
+                  !leftBlur && "from-transparent",
+                  leftBlur && "from-dark",
+                )}
+              />
+              <div
+                className="carousel flex h-full flex-col gap-[10px] overflow-y-hidden overflow-x-scroll scroll-smooth px-2 pb-[9.71px] hover:pb-0"
+                onScroll={() => {
+                  if (carouselRef.current) {
+                    if (carouselRef.current.scrollLeft === 0) {
+                      setLeftBlur(false);
+                    } else setLeftBlur(true);
+                  }
+                }}
+                ref={carouselRef}
+              >
+                <div className="flex h-full w-fit transition">
+                  {categories.map((category) => (
+                    <ShuffleCategoryWrapper
+                      key={category.id}
+                      active={category.name === space.categoryName}
+                      category={category.name}
+                      setAllSpaceDetails={setAllSpaceDetails}
+                      src={category.icon}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="no-scrollbar flex grow overflow-y-scroll p-[10px]">
+              <div className="flex h-fit w-full flex-wrap gap-[10px]">
+                {categorySpaces.map((space) => (
+                  <div
+                    key={space.id}
+                    className="flex flex-col gap-[5px]"
+                    onClick={() => changeCurrentSpace(space)}
+                  >
+                    <span className="relative flex h-[80px] w-[155px] cursor-pointer items-stretch justify-center overflow-hidden rounded-lg hover:scale-[1.025]">
+                      <Image
+                        src={`https://img.youtube.com/vi/${space.link}/hqdefault.jpg`}
+                        alt={space.title}
+                        draggable={false}
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        className="h-auto w-full object-cover"
+                      />
+                      <span
+                        className="absolute right-0 top-0 flex h-[30px] w-[30px] items-center justify-center"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          saveSpace(space);
+                        }}
+                      >
+                        <Heart
+                          className={cn(
+                            "w-5 h-5",
+                            savedSpaces[space.id] && "fill-white",
+                          )}
+                          strokeWidth={1.5}
+                        />
+                      </span>
+                    </span>
+                    <span className="max-w-[155px] overflow-hidden overflow-ellipsis text-nowrap text-xs">
+                      {space.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="w-[340px] max-w-[340px] h-full flex flex-grow">
+            <div className="no-scrollbar flex grow overflow-y-scroll p-[10px]">
+              <div className="flex h-fit w-full flex-wrap gap-[10px]">
+                {Object.values(savedSpaces).map((space) => (
+                  <div
+                    key={space.id}
+                    className="flex flex-col gap-[5px]"
+                    onClick={() => changeCurrentSpace(space)}
+                  >
+                    <span className="relative flex h-[80px] w-[155px] cursor-pointer items-stretch justify-center overflow-hidden rounded-lg hover:scale-[1.025]">
+                      <Image
+                        src={`https://img.youtube.com/vi/${space.link}/hqdefault.jpg`}
+                        alt={space.title}
+                        draggable={false}
+                        width={0}
+                        height={0}
+                        sizes="100vw"
+                        className="h-auto w-full object-cover"
+                      />
+                      <span
+                        className="absolute right-0 top-0 flex h-[30px] w-[30px] items-center justify-center"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          saveSpace(space);
+                        }}
+                      >
+                        <Heart
+                          className={cn(
+                            "w-5 h-5",
+                            savedSpaces[space.id] && "fill-white",
+                          )}
+                          strokeWidth={1.5}
+                        />
+                      </span>
+                    </span>
+                    <span className="max-w-[155px] overflow-hidden overflow-ellipsis text-nowrap text-xs">
+                      {space.title}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="no-scrollbar flex grow overflow-y-scroll p-[10px]">
-          <div className="flex h-fit w-full flex-wrap gap-[10px]">
-            {categorySpaces.map((space) => (
-              <div
-                key={space.id}
-                className="flex flex-col gap-[5px]"
-                onClick={() => changeCurrentSpace(space)}
-              >
-                <span className="relative flex h-[80px] w-[155px] cursor-pointer items-stretch justify-center overflow-hidden rounded-lg hover:scale-[1.025]">
-                  <Image
-                    src={`https://img.youtube.com/vi/${space.link}/hqdefault.jpg`}
-                    alt={space.title}
-                    draggable={false}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    className="h-auto w-full object-cover"
-                  />
-                  <span
-                    className="absolute right-0 top-0 flex h-[30px] w-[30px] items-center justify-center"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      saveSpace(space);
-                    }}
-                  >
-                    <Heart
-                      className={cn(
-                        "w-5 h-5",
-                        savedSpaces[space.id] && "fill-white",
-                      )}
-                      strokeWidth={1.5}
-                    />
-                  </span>
-                </span>
-                <span className="max-w-[155px] overflow-hidden overflow-ellipsis text-nowrap text-xs">
-                  {space.title}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+        )}
 
         <div className="flex w-full flex-col justify-between rounded-b-lg bg-dark px-4 py-2 shadow-space-info">
           <div className="flex h-full w-full justify-between px-1 py-2">
