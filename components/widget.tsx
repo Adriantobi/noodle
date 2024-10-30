@@ -1,6 +1,6 @@
 import { Minus } from "lucide-react";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, ReactNode } from "react";
 import { cn } from "@/lib/util";
 
 export type WidgetProps = {
@@ -9,9 +9,9 @@ export type WidgetProps = {
   visibleResize?: boolean;
   clear?: boolean;
   display: boolean;
-  header?: React.ReactNode;
+  header?: ReactNode;
   widgetState: (arg0: string) => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
   defaultHeight?: string;
   defaultWidth?: string;
 };
