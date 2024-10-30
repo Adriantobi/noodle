@@ -12,6 +12,7 @@ import {
   VolumeX,
   ArrowLeft,
   ArrowRight,
+  Shuffle,
 } from "lucide-react";
 import {
   categoryInterface,
@@ -355,8 +356,24 @@ export default function SpacesMenuWidget({
             </div>
           </>
         ) : (
-          <div className="w-[340px] max-w-[340px] h-full flex flex-grow">
-            <div className="no-scrollbar flex grow overflow-y-scroll p-[10px]">
+          <>
+            <div className="bg-dark p-[10px] w-full">
+              <div
+                className="w-auto rounded-[5px] flex items-center justify-center bg-white px-[15px] py-[6px] cursor-pointer gap-[5px]"
+                onClick={() => {
+                  const spacesArray = Object.values(savedSpaces);
+                  const randomIndex = Math.floor(
+                    Math.random() * spacesArray.length,
+                  );
+                  changeCurrentSpace(spacesArray[randomIndex]);
+                }}
+              >
+                <Shuffle className="h-[16px] w-[16px] stroke-black" />
+                <span className="text-sm text-black">Shuffle</span>
+              </div>
+            </div>
+
+            <div className="no-scrollbar flex grow overflow-y-scroll p-[10px] !pt-0 w-[340px] max-w-[340px]">
               <div className="flex h-fit w-full flex-wrap gap-[10px]">
                 {Object.values(savedSpaces).map((space) => (
                   <div
@@ -398,7 +415,7 @@ export default function SpacesMenuWidget({
                 ))}
               </div>
             </div>
-          </div>
+          </>
         )}
 
         <div className="flex w-full flex-col justify-between rounded-b-lg bg-dark px-4 py-2 shadow-space-info">
