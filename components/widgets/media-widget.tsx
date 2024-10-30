@@ -65,6 +65,7 @@ export default function MediaWidget({
           allowFullScreen
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
+          title="Spotify Embed"
         ></iframe>
 
         <div className="absolute bottom-0 flex h-[38px] w-full items-center gap-[10px] justify-self-end">
