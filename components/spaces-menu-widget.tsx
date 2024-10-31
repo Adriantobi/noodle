@@ -263,7 +263,7 @@ export default function SpacesMenuWidget({
               />
             </div>
 
-            <div className="relative mt-[10px] grid h-[51.71px] flex-shrink-0 overflow-hidden border-b border-b-[#515151]">
+            <div className="relative mt-[10px] grid h-[51.71px] flex-shrink-0 border-b border-b-[#515151]">
               <span
                 className={cn(
                   "justify-center absolute left-0 top-[6px] z-50 items-center w-[30px] h-[30px] cursor-pointer rounded-[5px] hover:bg-[#515151]/60",
@@ -282,7 +282,7 @@ export default function SpacesMenuWidget({
               </span>
               <div
                 className={cn(
-                  "absolute inset-0 bg-gradient-to-r via-transparent to-dark from-[2%] to-[98%] scale-150 pointer-events-none z-10",
+                  "absolute inset-0 bg-gradient-to-r via-transparent to-dark from-[-5%] to-[105%] pointer-events-none z-10",
                   !leftBlur && "from-transparent",
                   leftBlur && "from-dark",
                 )}
