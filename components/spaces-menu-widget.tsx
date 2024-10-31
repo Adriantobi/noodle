@@ -357,7 +357,13 @@ export default function SpacesMenuWidget({
           </>
         ) : (
           <>
-            <div className="w-full bg-dark p-[10px]">
+            <div
+              className={cn(
+                "w-full bg-dark p-[10px]",
+                Object.values(savedSpaces).length === 0 && "hidden",
+                Object.values(savedSpaces).length > 0 && "block",
+              )}
+            >
               <div
                 className="flex w-auto cursor-pointer items-center justify-center gap-[5px] rounded-[5px] bg-white px-[15px] py-[6px]"
                 onClick={() => {
@@ -374,7 +380,13 @@ export default function SpacesMenuWidget({
             </div>
 
             <div className="no-scrollbar flex w-[340px] max-w-[340px] grow overflow-y-scroll p-[10px] !pt-0">
-              <div className="flex h-fit w-full flex-wrap gap-[10px]">
+              <div
+                className={cn(
+                  "h-fit w-full flex-wrap gap-[10px]",
+                  Object.values(savedSpaces).length === 0 && "hidden",
+                  Object.values(savedSpaces).length > 0 && "flex",
+                )}
+              >
                 {Object.values(savedSpaces).map((space) => (
                   <div
                     key={space.id}
@@ -413,6 +425,17 @@ export default function SpacesMenuWidget({
                     </span>
                   </div>
                 ))}
+              </div>
+              <div
+                className={cn(
+                  "justify-center items-center w-full h-full gap-[5px]",
+                  Object.values(savedSpaces).length === 0 && "flex",
+                  Object.values(savedSpaces).length > 0 && "hidden",
+                )}
+              >
+                Press the
+                <Heart className="w-5 h-5 fill-[#efa18f] stroke-[#efa18f]" />
+                to save a space
               </div>
             </div>
           </>
