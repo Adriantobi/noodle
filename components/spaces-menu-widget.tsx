@@ -228,7 +228,7 @@ export default function SpacesMenuWidget({
 
       <div
         className={cn(
-          "flex flex-col grow h-[calc(100%-64px)] max-w-[340px] bg-dark rounded-lg text-white relative",
+          "flex flex-col grow h-[calc(100%-64px)] w-[340px] max-w-[340px] bg-dark rounded-lg text-white relative",
           !showElement && "h-[calc(100%-16px)]",
         )}
       >
@@ -361,11 +361,11 @@ export default function SpacesMenuWidget({
               className={cn(
                 "w-full bg-dark p-[10px]",
                 Object.values(savedSpaces).length === 0 && "hidden",
-                Object.values(savedSpaces).length > 0 && "block",
+                Object.values(savedSpaces).length > 0 && "flex",
               )}
             >
               <div
-                className="flex w-auto cursor-pointer items-center justify-center gap-[5px] rounded-[5px] bg-white px-[15px] py-[6px]"
+                className="flex w-full cursor-pointer items-center justify-center gap-[5px] rounded-[5px] bg-white px-[15px] py-[6px]"
                 onClick={() => {
                   const spacesArray = Object.values(savedSpaces);
                   const randomIndex = Math.floor(
