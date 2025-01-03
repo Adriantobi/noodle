@@ -1,6 +1,6 @@
 import ShuffleCategoryWrapper from "./shuffle-category-wrapper";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, ReactNode } from "react";
 import {
   Heart,
   LinkIcon,
@@ -40,7 +40,7 @@ type SocialLinkProps = {
   href: string;
   target: string;
   type: string;
-  icon: JSX.Element;
+  icon: ReactNode;
   onClick: () => void;
 };
 
