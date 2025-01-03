@@ -1,6 +1,6 @@
 import DropMenu from "./drop-menu";
 
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, RefObject, useEffect, useRef, useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import {
   ChevronDown,
@@ -265,12 +265,12 @@ export default function TopNav({
   return (
     <>
       <Account
-        ignoreRef={modalRef}
+        ignoreRef={modalRef as RefObject<HTMLDivElement>}
         state={showAccountModal}
         setState={setModals}
       />
       <Appearance
-        ignoreRef={modalRef}
+        ignoreRef={modalRef as RefObject<HTMLDivElement>}
         state={showAppearanceModal}
         setEnableHide={setEnableHide}
         setDisplayTimeOut={setDisplayTimeOut}
@@ -443,7 +443,7 @@ export default function TopNav({
       {dropDownOpen ? (
         <DropMenu
           full={showElement}
-          dropDownRef={dropDownRef}
+          dropDownRef={dropDownRef as RefObject<HTMLDivElement>}
           modalStates={setModals}
         />
       ) : null}
