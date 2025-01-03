@@ -5,7 +5,7 @@ import {
   scrollbarColor,
 } from "tailwind-scrollbar-utilities";
 
-const config: Config = {
+export default {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -38,5 +38,4 @@ const config: Config = {
     },
   },
   plugins: [scrollbarGutter(), scrollbarWidth(), scrollbarColor()],
-};
-export default config;
+} satisfies Config;
