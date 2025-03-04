@@ -1,9 +1,4 @@
 import type { Config } from "tailwindcss";
-import {
-  scrollbarGutter,
-  scrollbarWidth,
-  scrollbarColor,
-} from "tailwind-scrollbar-utilities";
 
 export default {
   content: [
@@ -37,5 +32,4 @@ export default {
       "2xl": "1536px",
     },
   },
-  plugins: [scrollbarGutter(), scrollbarWidth(), scrollbarColor()],
 } satisfies Config;
