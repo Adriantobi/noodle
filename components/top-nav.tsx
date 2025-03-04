@@ -92,7 +92,7 @@ function Appearance({
                   <span className="w-[70%]">Hide After (seconds)</span>
                   <input
                     className={cn(
-                      "min-h-[30px] w-full flex justify-center rounded-[5px] bg-transparent outline-none border border-[#515151] p-2 text-white text-sm leading-4 placeholder:text-white disabled:cursor-not-allowed",
+                      "min-h-[30px] w-full flex justify-center rounded-[5px] bg-transparent outline-hidden border border-[#515151] p-2 text-white text-sm leading-4 placeholder:text-white disabled:cursor-not-allowed",
                       "max-w-[80px] setting-input",
                     )}
                     type="number"
@@ -142,7 +142,7 @@ function Account({ state, setState, ignoreRef }: TopNavItemProps) {
               <span>Email:</span>
               <span>
                 <input
-                  className="flex min-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-none placeholder:text-white disabled:cursor-not-allowed"
+                  className="flex min-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-hidden placeholder:text-white disabled:cursor-not-allowed"
                   type="text"
                   placeholder={data?.user?.email as string}
                   disabled
@@ -153,7 +153,7 @@ function Account({ state, setState, ignoreRef }: TopNavItemProps) {
               <span>Name:</span>
               <span>
                 <input
-                  className="flex min-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-none placeholder:text-white disabled:cursor-not-allowed"
+                  className="flex min-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-hidden placeholder:text-white disabled:cursor-not-allowed"
                   type="text"
                   defaultValue={data?.user?.name as string}
                 />
@@ -280,7 +280,7 @@ export default function TopNav({
       />
       <div
         className={cn(
-          "bg-transparent p-2 flex items-center justify-between h-[56px] text-white z-[1001] mt-0 gap-2 top-nav",
+          "bg-transparent p-2 flex items-center justify-between h-[56px] text-white z-1001 mt-0 gap-2 top-nav",
           !showElement && "-mt-[48px]",
         )}
       >

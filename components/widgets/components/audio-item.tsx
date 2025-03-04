@@ -92,7 +92,7 @@ export default function AudioItem({ name, source }: AudioItemProps) {
           min="0"
           max="100"
           value={volume}
-          className="w-full, flex h-fit ml-2 overflow-visible bg-transparent outline-none appearance-none"
+          className="w-full, flex h-fit ml-2 overflow-visible bg-transparent outline-hidden appearance-none"
           onChange={(event) =>
             setVolume(Number((event.target as HTMLInputElement).value))
           }

@@ -151,7 +151,7 @@ export default function Widget({
               : "",
       }}
       className={cn(
-        "bg-dark flex flex-col absolute rounded-lg w-[360px] z-[1001] widget",
+        "bg-dark flex flex-col absolute rounded-lg w-[360px] z-1001 widget",
         resize && "overflow-hidden resize min-w-[360px] min-h-[164px]",
         clear && "bg-transparent border-0",
         !display && "hidden",
@@ -225,7 +225,7 @@ export default function Widget({
             width="16"
             height="16"
             fill="none"
-            className="resize-widget-corner pointer-events-none absolute bottom-0 right-0 z-[1] w-fit fill-white"
+            className="resize-widget-corner pointer-events-none absolute bottom-0 right-0 z-1 w-fit fill-white"
           >
             <path d="M5.333 11.333a.667.667 0 100-1.333.667.667 0 000 1.333zM8 11.333A.667.667 0 108 10a.667.667 0 000 1.333zM8 8.666a.667.667 0 100-1.333.667.667 0 000 1.333zM10.667 6a.667.667 0 100-1.333.667.667 0 000 1.333zM10.667 11.333a.667.667 0 100-1.333.667.667 0 000 1.333zM10.667 8.666a.667.667 0 100-1.333.667.667 0 000 1.333z"></path>
           </svg>

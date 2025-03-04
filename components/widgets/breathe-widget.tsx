@@ -6,7 +6,7 @@ export default function BreatheWidget({ display, widgetState }: WidgetProps) {
   return (
     <>
       <div
-        className="fixed top-0 z-[1010] flex h-full w-full flex-col items-center justify-center overflow-hidden bg-[#23282e]"
+        className="fixed top-0 z-1010 flex h-full w-full flex-col items-center justify-center overflow-hidden bg-[#23282e]"
         style={{ display: display ? "flex" : "none" }}
       >
         <span
