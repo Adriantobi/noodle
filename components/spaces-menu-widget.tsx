@@ -182,7 +182,7 @@ export default function SpacesMenuWidget({
   return (
     <div
       className={cn(
-        "flex relative flex-row-reverse h-full z-[1003] max-w-fit ml-2",
+        "flex relative flex-row-reverse h-full z-1003 max-w-fit ml-2",
         !showElement && "h-full",
         !menuState && "hidden",
       )}
@@ -255,15 +255,15 @@ export default function SpacesMenuWidget({
 
         {!favoritesOpen ? (
           <>
-            <div className="flex w-full p-[10px] !pb-0">
+            <div className="flex w-full p-[10px] pb-0!">
               <input
-                className="flex max-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-none placeholder:text-[#757575] disabled:cursor-not-allowed"
+                className="flex max-h-[30px] w-full justify-center rounded-[5px] border border-[#515151] bg-transparent p-2 text-sm leading-4 text-white outline-hidden placeholder:text-[#757575] disabled:cursor-not-allowed"
                 type="text"
                 placeholder="🔍 Search space"
               />
             </div>
 
-            <div className="relative mt-[10px] grid h-[51.71px] flex-shrink-0 border-b border-b-[#515151]">
+            <div className="relative mt-[10px] grid h-[51.71px] shrink-0 border-b border-b-[#515151]">
               <span
                 className={cn(
                   "justify-center absolute left-0 top-[6px] z-50 items-center w-[30px] h-[30px] cursor-pointer rounded-[5px] hover:bg-[#515151]/60",
@@ -282,7 +282,7 @@ export default function SpacesMenuWidget({
               </span>
               <div
                 className={cn(
-                  "absolute inset-0 bg-gradient-to-r via-transparent to-dark from-[-5%] to-[105%] pointer-events-none z-10",
+                  "absolute inset-0 bg-linear-to-r via-transparent to-dark from-[-5%] to-105% pointer-events-none z-10",
                   !leftBlur && "from-transparent",
                   leftBlur && "from-dark",
                 )}
@@ -347,7 +347,7 @@ export default function SpacesMenuWidget({
                         />
                       </span>
                     </span>
-                    <span className="max-w-[155px] overflow-hidden overflow-ellipsis text-nowrap text-xs">
+                    <span className="max-w-[155px] overflow-hidden text-ellipsis text-nowrap text-xs">
                       {space.title}
                     </span>
                   </div>
@@ -379,7 +379,7 @@ export default function SpacesMenuWidget({
               </div>
             </div>
 
-            <div className="no-scrollbar flex w-[340px] max-w-[340px] grow overflow-y-scroll p-[10px] !pt-0">
+            <div className="no-scrollbar flex w-[340px] max-w-[340px] grow overflow-y-scroll p-[10px] pt-0!">
               <div
                 className={cn(
                   "h-fit w-full flex-wrap gap-[10px]",
@@ -420,7 +420,7 @@ export default function SpacesMenuWidget({
                         />
                       </span>
                     </span>
-                    <span className="max-w-[155px] overflow-hidden overflow-ellipsis text-nowrap text-xs">
+                    <span className="max-w-[155px] overflow-hidden text-ellipsis text-nowrap text-xs">
                       {space.title}
                     </span>
                   </div>
@@ -444,7 +444,7 @@ export default function SpacesMenuWidget({
         <div className="flex w-full flex-col justify-between rounded-b-lg bg-dark px-4 py-2 shadow-space-info">
           <div className="flex h-full w-full justify-between px-1 py-2">
             <div className="flex flex-col">
-              <span className="max-w-[150px] overflow-hidden overflow-ellipsis text-nowrap text-sm">
+              <span className="max-w-[150px] overflow-hidden text-ellipsis text-nowrap text-sm">
                 {space.title}
               </span>
               <span className="relative flex items-center gap-[5px]">

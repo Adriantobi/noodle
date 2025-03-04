@@ -18,7 +18,7 @@ export default function Modal({
   return (
     <div
       ref={ignoreRef}
-      className="fixed left-0 top-0 z-[5000] h-screen w-screen bg-[#333333] bg-opacity-80"
+      className="fixed left-0 top-0 z-5000 h-screen w-screen bg-[#333333] bg-opacity-80"
       onClick={() => setState(name)}
     >
       <div

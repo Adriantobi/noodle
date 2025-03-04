@@ -73,13 +73,13 @@ export default function ShuffleCategoryWrapper({
         {active && (
           <div className="absolute left-0 top-0 flex h-full w-full overflow-hidden rounded-[10px] bg-[rgba(29,34,40,0.7)] hover:bg-[rgba(35,41,49,0.7)]">
             <span
-              className="flex h-full w-full flex-grow items-center justify-center bg-transparent hover:bg-dark"
+              className="flex h-full w-full grow items-center justify-center bg-transparent hover:bg-dark"
               onClick={() => setAllSpaceDetails(category, "decrement")}
             >
               <ChevronLeft className="h-[18px] w-[18px]" />
             </span>
             <span
-              className="flex h-full w-full flex-grow items-center justify-center bg-transparent hover:bg-dark"
+              className="flex h-full w-full grow items-center justify-center bg-transparent hover:bg-dark"
               onClick={() => setAllSpaceDetails(category, "increment")}
             >
               <ChevronRight className="h-[18px] w-[18px]" />
@@ -87,7 +87,7 @@ export default function ShuffleCategoryWrapper({
           </div>
         )}
         <span
-          className="absolute left-0 top-0 z-[2002] hidden h-[24px] items-center justify-center whitespace-nowrap rounded-[4px] bg-dark px-[8px] py-[4px] text-[14px] text-white shadow-[1px_1px_3px_#1e242b] group-hover:flex"
+          className="absolute left-0 top-0 z-2002 hidden h-[24px] items-center justify-center whitespace-nowrap rounded-[4px] bg-dark px-[8px] py-[4px] text-[14px] text-white shadow-[1px_1px_3px_#1e242b] group-hover:flex"
           ref={toolTipRef}
         >
           {category}

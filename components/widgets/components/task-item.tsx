@@ -113,7 +113,7 @@ export default function TaskItem({
         />
         <textarea
           ref={taskItemRef}
-          className="text-sm outline-none border-none bg-transparent flex box-border w-[calc(100%-48px)] min-h-[18px] h-[18px] max-h-[400px] overflow-hidden text-white leading-4 pl-1 resize-none font-[100] hover:bg-[#434446] rounded-[2px] placeholder:text-[#5c5d5e]"
+          className="text-sm outline-hidden border-none bg-transparent flex box-border w-[calc(100%-48px)] min-h-[18px] h-[18px] max-h-[400px] overflow-hidden text-white leading-4 pl-1 resize-none font-[100] hover:bg-[#434446] rounded-[2px] placeholder:text-[#5c5d5e]"
           onChange={handleChange}
           placeholder="Add a task"
           value={taskText}
@@ -130,7 +130,7 @@ export default function TaskItem({
       </div>
 
       {/*more ? (
-        <div className="flex justify-center items-center flex-col fixed -right-[85px] top-[50px] bg-dark w-fit min-w-[250px] h-auto rounded-[5px] shadow-more overflow-hidden z-[1003]">
+        <div className="flex justify-center items-center flex-col fixed -right-[85px] top-[50px] bg-dark w-fit min-w-[250px] h-auto rounded-[5px] shadow-more overflow-hidden z-1003">
           <div className="text-sm flex items-center w-full p-[10px] text-white cursor-pointer hover:bg-dark">
             Edit
           </div>
